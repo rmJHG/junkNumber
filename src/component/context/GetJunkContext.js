@@ -1,9 +1,7 @@
-import React from 'react'
+import React from "react";
 
 const GetJunkContext = () => {
-  return (
-    <div>getJunkContext</div>
-  )
-}
+  return <div>getJunkContext</div>;
+};
 
-export default GetJunkContext
+export default GetJunkContext;

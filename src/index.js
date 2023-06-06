@@ -3,9 +3,9 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
 import { BrowserRouter } from "react-router-dom";
-import { firebase } from "./firebase";
+import { firebaseApp } from "./firebase";
 
-console.log(firebase);
+console.log(firebaseApp);
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
 

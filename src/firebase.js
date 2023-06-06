@@ -1,6 +1,6 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { getAuth } from "firebase/auth";
+import { browserSessionPersistence, getAuth, setPersistence } from "firebase/auth";
 
 
 // TODO: Add SDKs for Firebase products that you want to use
@@ -16,10 +16,11 @@ const firebaseConfig = {
   appId: process.env.REACT_APP_APP_ID,
 };
 
-
 initializeApp(firebaseConfig)
 
 
 // Initialize Firebase
-export const firebase = initializeApp(firebaseConfig);
-export const firebaseAuth = getAuth(firebase);
+export const firebaseApp = initializeApp(firebaseConfig);
+export const firebaseAuth = getAuth(firebaseApp);
+
+setPersistence(firebaseAuth, browserSessionPersistence)

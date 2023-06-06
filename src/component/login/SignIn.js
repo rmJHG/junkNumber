@@ -1,19 +1,24 @@
 import React, { useRef } from "react";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { firebaseAuth } from "../../firebase";
-
 
 const SignIn = () => {
   const enterUserEmail = useRef();
   const enterUserPassword = useRef();
+  const enterNickName = useRef();
   const nav = useNavigate();
 
   const userDataSubmit = (event) => {
     event.preventDefault();
+
     createUserWithEmailAndPassword(firebaseAuth, enterUserEmail.current.value, enterUserPassword.current.value)
-      .then((userCredential) => {
-        console.log(userCredential.user);
+      .then((result) => {
+        updateProfile(firebaseAuth.currentUser, {
+          displayName: enterNickName.current.value,
+        });
+      })
+      .then(() => {
         nav("/");
       })
       .catch((error) => {
@@ -25,8 +30,9 @@ const SignIn = () => {
     <div>
       SignIn
       <form onSubmit={userDataSubmit}>
-        <input type="text" ref={enterUserEmail} />
+        <input type="email" ref={enterUserEmail} />
         <input type="password" ref={enterUserPassword} />
+        <input type="text" ref={enterNickName} placeholder="닉네임" />
         <button>회원가입</button>
       </form>
     </div>
