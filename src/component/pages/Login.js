@@ -2,7 +2,7 @@ import React, { useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { firebaseAuth } from "../../firebase";
-import LogOut from "../login/LogOut";
+import LogOut from "../user/LogOut";
 
 const Login = () => {
   const enterEmail = useRef();

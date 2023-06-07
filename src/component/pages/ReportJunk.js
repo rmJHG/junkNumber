@@ -1,9 +1,33 @@
-import React from 'react'
+import React from "react";
+import { firebaseDb } from "../../firebase";
+import { doc, getDoc } from "firebase/firestore";
 
 const ReportJunk = () => {
-  return (
-    <div>ReportJunk</div>
-  )
-}
+  // const data = {
+  //   name: "han",
+  //   ho: "gye",
+  // };
 
-export default ReportJunk
+  const addData = async (event) => {
+    event.preventDefault();
+    try {
+      const a = doc(firebaseDb, "users", "name");
+      const targetDoc = await getDoc(a);
+      console.log(targetDoc.data())
+
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  return (
+    <div>
+      ReportJun
+      <form onSubmit={addData}>
+        <button>게시</button>
+      </form>
+    </div>
+  );
+};
+
+export default ReportJunk;

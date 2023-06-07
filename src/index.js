@@ -3,14 +3,13 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
 import { BrowserRouter } from "react-router-dom";
-import { firebaseApp } from "./firebase";
+import { UserContextProvider } from "./component/context/UserContext";
 
-console.log(firebaseApp);
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-
+  <UserContextProvider>
     <BrowserRouter>
       <App />
     </BrowserRouter>
-
+  </UserContextProvider>
 );

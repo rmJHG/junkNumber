@@ -1,7 +1,10 @@
 import React from "react";
 import { firebaseAuth } from "../../firebase";
 
+
 const MainPage = () => {
+
+
   const isLogin = () => {
     const userData = firebaseAuth.currentUser;
     if (userData !== null) {
@@ -10,7 +13,6 @@ const MainPage = () => {
       console.log("비로그인중");
     }
   };
-
   return (
     <div>
       MainPage
