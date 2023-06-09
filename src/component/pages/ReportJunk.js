@@ -1,32 +1,26 @@
 import React from "react";
-import { firebaseDb } from "../../firebase";
-import { doc, getDoc } from "firebase/firestore";
+import { fireebaseDb } from "../../firebase";
+import { ref, set } from "firebase/database";
 
 const ReportJunk = () => {
-  // const data = {
-  //   name: "han",
-  //   ho: "gye",
-  // };
+  const db = ref(fireebaseDb, 'numbers')
 
-  const addData = async (event) => {
-    event.preventDefault();
-    try {
-      const a = doc(firebaseDb, "users", "name");
-      const targetDoc = await getDoc(a);
-      console.log(targetDoc.data())
 
-    } catch (e) {
-      console.log(e);
-    }
+  
+  const addData = async (e) => {
+    e.preventDefault();
+    set(db, {
+      name:"hanggasdg",
+      hm : "guy"
+    })
   };
-
   return (
-    <div>
-      ReportJun
+    <>
+      ReportJunk
       <form onSubmit={addData}>
         <button>게시</button>
       </form>
-    </div>
+    </>
   );
 };
 
