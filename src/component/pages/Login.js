@@ -24,7 +24,7 @@ const Login = () => {
   };
 
   return (
-    <div>
+    <>
       <form onSubmit={loginSubmit}>
         <input type="text" ref={enterEmail} />
         <input type="password" ref={enterPassword} />
@@ -34,7 +34,7 @@ const Login = () => {
 
       <LogOut />
       <Link to="/create">회원가입</Link>
-    </div>
+    </>
   );
 };
 
