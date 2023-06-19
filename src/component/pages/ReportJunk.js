@@ -19,14 +19,19 @@ const ReportJunk = () => {
     enterNumber.current.value = number;
   };
 
- 
-
   useEffect(() => {
     onAuthStateChanged(firebaseAuth, (user) => {
       if (user) {
         setContent(
           <form onSubmit={addData}>
-            <input type="text" onChange={changeNumberInput} ref={enterNumber} minLength="9" />
+            <input
+              required
+              type="text"
+              onChange={changeNumberInput}
+              ref={enterNumber}
+              pattern=".{9,11}"
+              title="일반적으로 쓰이는 번호 양식이 아닙니다"
+            />
             <button>게시</button>
           </form>
         );
