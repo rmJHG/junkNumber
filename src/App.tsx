@@ -17,7 +17,6 @@ const App = () => {
         <Route path="/report" element={<ReportJunk />} />
         <Route path="/login" element={<Login />} />
         <Route path="/create" element={<SignIn />} />
-
       </Routes>
     </Layout>
   );

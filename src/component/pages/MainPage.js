@@ -43,8 +43,6 @@ const MainPage = () => {
     return <>로딩중</>;
   }
 
-
- 
   return (
     <>
       <JunkList junk={junk} />

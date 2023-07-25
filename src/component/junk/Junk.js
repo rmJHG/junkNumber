@@ -1,9 +1,35 @@
-import React from 'react'
+import React, { useEffect, useRef, useState } from "react";
+import classes from "./Junk.module.css";
 
 const Junk = (props) => {
-  return (
-    <li>{props.data}</li>
-  )
-}
+  const [postedDate, setPostedDate] = useState();
+  const today = new Date().getTime();
 
-export default Junk
+  let postTimeRef = useRef();
+
+  useEffect(() => {
+    if (86400000 >= today - props.postMS) {
+      postTimeRef.current = Math.floor((today - props.postMS) / 1000) / 60;
+    } else {
+      setPostedDate(props.postDate);
+    }
+    if (postTimeRef.current <= 1) {
+      setPostedDate("1분 전");
+    } else if (postTimeRef.current <= 59) {
+      setPostedDate(`${Math.floor(postTimeRef.current)}분 전`);
+    } else if (60 <= postTimeRef.current && postTimeRef.current <= 1440) {
+      setPostedDate(`${Math.floor(postTimeRef.current / 60)}시간 전`);
+    }
+  }, [props.postDate, props.postMS, today]);
+
+  return (
+    <li className={classes.junkContainer}>
+      {props.number}
+
+      <div>{props.postName}</div>
+      <div>{postedDate}</div>
+    </li>
+  );
+};
+
+export default Junk;

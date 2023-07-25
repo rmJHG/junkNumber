@@ -29,7 +29,7 @@ const Header = () => {
   return (
     <header className={classes.header}>
       <div className={classes.headerContent}>
-        <div>제목</div>
+        <div>피싱넘버 기록</div>
         {loading ? (
           <p>LOADING</p>
         ) : name ? (
