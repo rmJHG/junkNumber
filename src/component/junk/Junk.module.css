@@ -1,4 +1,24 @@
 .junkContainer {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
+}
+
+.junkContainer > div {
+  display: flex;
+  width: 20%;
+  justify-content: center;
+}
+
+.junkContainer > div:first-child {
+  display: flex;
+  justify-content: left;
+}
+
+@media (pointer: coarse) {
+  /* custom css for "touch targets" */
+  .junkContainer > div {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+  }
 }

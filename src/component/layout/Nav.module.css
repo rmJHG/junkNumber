@@ -1,5 +1,22 @@
-.navList {
-    display: flex;
+nav {
+  background-color: #d3d3d3;
+}
 
-    justify-content: space-evenly;
+.navList {
+  display: flex;
+  height: 25px;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.navList > li {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 25%;
+  height: 100%;
+}
+
+a {
+  color: #333333;
 }

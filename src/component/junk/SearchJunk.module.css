@@ -1,0 +1,13 @@
+.container {
+  margin-top: 20rem;
+}
+.searchBox {
+  display: flex;
+  justify-content: center;
+}
+
+@media (max-width: 1000px) {
+  .container {
+    margin-top: 10rem;
+  }
+}

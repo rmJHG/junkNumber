@@ -1,0 +1,11 @@
+.reportForm {
+  margin-top: 20%;
+  display: flex;
+  justify-content: center;
+}
+
+@media (max-width: 1000px) {
+  .reportForm {
+    margin-top: 10rem;
+  }
+}

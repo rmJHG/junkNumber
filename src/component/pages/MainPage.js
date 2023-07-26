@@ -3,7 +3,7 @@ import { firebaseAuth } from "../../firebase";
 import { child, get } from "firebase/database";
 import { dbRef } from "../../firebase";
 import JunkList from "../junk/JunkList";
-
+import SearchJunk from "../junk/SearchJunk";
 const MainPage = () => {
   const [junk, setJunk] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -45,6 +45,7 @@ const MainPage = () => {
 
   return (
     <>
+      <SearchJunk />
       <JunkList junk={junk} />
       <button onClick={isLogin}>로그인확인</button>
     </>
