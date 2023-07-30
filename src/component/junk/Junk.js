@@ -24,9 +24,14 @@ const Junk = (props) => {
 
   return (
     <li className={classes.junkContainer}>
-      <div>{props.number}</div>
-      <div>{props.postName}</div>
-      <div>{postedDate}</div>
+      <div>
+        <p>{props.number}</p>
+      </div>
+
+      <div className={classes.info}>
+        <p>{props.postName}</p>
+        <p>{postedDate}</p>
+      </div>
     </li>
   );
 };

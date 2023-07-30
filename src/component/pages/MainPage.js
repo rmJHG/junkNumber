@@ -1,20 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { firebaseAuth } from "../../firebase";
 import { child, get } from "firebase/database";
 import { dbRef } from "../../firebase";
-import JunkList from "../junk/JunkList";
+import RealTimeJunkList from "../junk/RealTimeJunkList";
 import SearchJunk from "../junk/SearchJunk";
+import TopReportedJunkList from "../junk/TopReportedJunkList";
+
 const MainPage = () => {
   const [junk, setJunk] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const isLogin = () => {
-    const userData = firebaseAuth.currentUser;
-    if (userData !== null) {
-      console.log(userData.email, userData.displayName);
-    } else {
-      console.log("비로그인중");
-    }
-  };
 
   //db에서 전화번호 리스트 가져오기
   useEffect(() => {
@@ -46,8 +39,8 @@ const MainPage = () => {
   return (
     <>
       <SearchJunk />
-      <JunkList junk={junk} />
-      <button onClick={isLogin}>로그인확인</button>
+      <RealTimeJunkList junk={junk} />
+      <TopReportedJunkList junk={junk} />
     </>
   );
 };

@@ -1,0 +1,45 @@
+.listBox {
+  border: 1px solid gray;
+  border-radius: 5px;
+  width: 100%;
+  height: 100%;
+}
+.title {
+  border-radius: 5px;
+  padding: 15px;
+  background-color: white;
+}
+.listHeader {
+  border-top: 1px solid black;
+  display: flex;
+  justify-content: space-evenly;
+  padding: 5px 2px;
+  border-bottom: 1px solid gray;
+}
+.listHeader > p:first-child {
+  width: 30%;
+}
+.info {
+  display: flex;
+  width: 30%;
+  justify-content: space-between;
+}
+.listBox > li {
+  border-bottom: 1px solid gray;
+  padding: 2px;
+}
+.listBox > li:last-child {
+  border: none;
+}
+
+@media (max-width: 576px) {
+}
+@media (min-width: 576px) {
+}
+@media (min-width: 768px) {
+}
+@media (min-width: 992px) {
+}
+
+@media (min-width: 1200px) {
+}

@@ -1,7 +1,9 @@
 .header {
-  position: fixed;
-  top: 0;
   width: 100%;
+  z-index: 1000;
+}
+.header p {
+  color: #fffff0;
 }
 .title {
   margin-left: 3%;

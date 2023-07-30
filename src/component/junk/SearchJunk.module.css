@@ -1,13 +1,32 @@
 .container {
-  margin-top: 20rem;
 }
 .searchBox {
   display: flex;
   justify-content: center;
 }
-
-@media (max-width: 1000px) {
+@media (max-width: 576px) {
   .container {
-    margin-top: 10rem;
+    margin: 10% 0;
+  }
+}
+@media (min-width: 576px) {
+  .container {
+    margin: 15% 0;
+  }
+}
+@media (min-width: 768px) {
+  .container {
+    margin: 15% 0;
+  }
+}
+@media (min-width: 992px) {
+  .container {
+    margin: 15% 0;
+  }
+}
+
+@media (min-width: 1200px) {
+  .container {
+    margin: 20% 0;
   }
 }

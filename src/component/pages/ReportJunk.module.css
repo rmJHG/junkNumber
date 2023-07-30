@@ -3,6 +3,9 @@
   display: flex;
   justify-content: center;
 }
+.comment {
+  resize: none;
+}
 
 @media (max-width: 1000px) {
   .reportForm {

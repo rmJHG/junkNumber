@@ -6,39 +6,46 @@ import { useNavigate } from "react-router-dom";
 import classes from "./ReportJunk.module.css";
 const ReportJunk = () => {
   const nav = useNavigate();
-  const [isChecked, setIsChecked] = useState("보이스피싱");
+  const [checkedType, setCheckedType] = useState("보이스피싱");
   const [content, setContent] = useState(false);
   const userNameRef = useRef(null);
 
   const enterFirstNumRef = useRef();
-  const enterSecondNumRef = useRef();
-  const enterThirdNumRef = useRef();
+  const enterLastNumRef = useRef();
+
+  const handleLastNumInput = (e) => {
+    const number = e.target.value
+      .replace(/[^0-9]/g, "")
+      .replace(/^(\d{3,4})(\d{4})/, "$1-$2");
+
+    enterLastNumRef.current.value = number;
+  };
 
   const handleRadiobox = (e) => {
     const checkValue = e.target.value;
-    setIsChecked(checkValue);
+    setCheckedType(checkValue);
   };
   const addData = async (e) => {
     e.preventDefault();
-    const enteredCT = enterFirstNumRef.current.value;
-    const enteredSe = enterSecondNumRef.current.value;
-    const enteredTh = enterThirdNumRef.current.value;
+    const enteredFirstNum = enterFirstNumRef.current.value;
+    const enteredLastNum = enterLastNumRef.current.value;
+
     let today = new Date();
     let year = today.getFullYear();
     let month = "00" + (today.getMonth() + 1);
     let day = "00" + today.getDate();
 
     await push(dbRef, {
-      number: `${enteredCT}-${enteredSe}-${enteredTh}`,
+      number: `${enteredFirstNum}-${enteredLastNum}`,
       postName: userNameRef.current,
       postDate: `${year}/${month.toString().slice(-2)}/${day
         .toString()
         .slice(-2)} `,
       postMS: today.getTime(),
+      type: checkedType,
     }).then(() => {
       nav("/");
     });
-    console.log(enteredCT, enteredSe, enteredTh);
   };
 
   useEffect(() => {
@@ -81,32 +88,46 @@ const ReportJunk = () => {
             <option value="010">010</option>
             <option value="070">070</option>
           </select>
-          <input type="text" required maxLength={4} ref={enterSecondNumRef} />
-          <input type="text" required maxLength={4} ref={enterThirdNumRef} />
+          <input
+            type="text"
+            required
+            maxLength={9}
+            ref={enterLastNumRef}
+            onChange={handleLastNumInput}
+          />
+
           <div>
             <input
               type="radio"
               value="보이스피싱"
-              checked={isChecked === "보이스피싱"}
+              checked={checkedType === "보이스피싱"}
               onChange={handleRadiobox}
             />
             보이스피싱
             <input
               type="radio"
               value="휴대폰광고"
-              checked={isChecked === "휴대폰광고"}
+              checked={checkedType === "휴대폰광고"}
               onChange={handleRadiobox}
             />
             휴대폰광고
             <input
               type="radio"
               value="보험광고"
-              checked={isChecked === "보험광고"}
+              checked={checkedType === "보험광고"}
               onChange={handleRadiobox}
             />
             보험광고
           </div>
-
+          <div>
+            <textarea
+              className={classes.comment}
+              name=""
+              id=""
+              cols="30"
+              rows="10"
+            ></textarea>
+          </div>
           <button>신고</button>
         </form>
       ) : (
