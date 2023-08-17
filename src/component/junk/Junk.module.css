@@ -1,24 +1,21 @@
 .junkContainer {
   display: flex;
   justify-content: space-evenly;
-  border-bottom: 1px solid gray;
 }
 
 .junkContainer > div:first-child {
   display: flex;
   width: 30%;
   justify-content: center;
-}
-
-.junkContainer > div:first-child {
-  display: flex;
   justify-content: left;
 }
 
 .info {
   width: 30%;
+  height: 100%;
   display: flex;
   justify-content: space-between;
+  align-content: center;
 }
 
 @media (max-width: 576px) {

@@ -1,20 +1,22 @@
 .listBox {
-  border: 1px solid gray;
+  border: 1px solid rgb(208, 208, 208);
   border-radius: 5px;
   width: 100%;
   height: 100%;
+
+  margin-bottom: 30px;
 }
 .title {
-  border-radius: 5px;
+  border-radius: 4px 4px 0 0;
   padding: 15px;
   background-color: white;
 }
 .listHeader {
-  border-top: 1px solid black;
+  border-top: 1px solid rgb(208, 208, 208);
   display: flex;
   justify-content: space-evenly;
   padding: 5px 2px;
-  border-bottom: 1px solid gray;
+  border-bottom: 1px solid rgb(208, 208, 208);
 }
 .listHeader > p:first-child {
   width: 30%;
@@ -25,11 +27,14 @@
   justify-content: space-between;
 }
 .listBox > li {
-  border-bottom: 1px solid gray;
+  border-bottom: 1px solid rgb(208, 208, 208);
   padding: 2px;
+  background-color: white;
 }
+
 .listBox > li:last-child {
   border: none;
+  border-radius: 0 0 5px 5px;
 }
 
 @media (max-width: 576px) {

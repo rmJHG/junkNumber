@@ -1,8 +1,7 @@
 import React from "react";
 import classes from "./TopReportedJunkList.module.css";
-const TopReportedJunkList = (props) => {
-  console.log(props.junk);
 
+const TopReportedJunkList = (props) => {
   const countDuplicates = (arr, prop) => {
     const countMap = new Map();
     arr.forEach((item) => {
@@ -14,9 +13,9 @@ const TopReportedJunkList = (props) => {
 
   const data = countDuplicates(props.junk, "number");
 
-  const sortedData = Array.from(data).sort((a, b) => b[1] - a[1]);
-
-  console.log(sortedData);
+  const sortedData = Array.from(data)
+    .sort((a, b) => b[1] - a[1])
+    .slice(0, 10);
 
   return (
     <ul className={classes.topReportJunkList}>

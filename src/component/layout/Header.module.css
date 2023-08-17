@@ -19,3 +19,7 @@
 .loginInfoContainer {
   display: flex;
 }
+
+.loginInfoContainer > p:first-child {
+  font-family: HakgyoansimWoojuR;
+}

@@ -1,7 +1,8 @@
 .reportForm {
-  margin-top: 20%;
+  padding-top: 20%;
   display: flex;
   justify-content: center;
+  min-width: 100%;
 }
 .comment {
   resize: none;
@@ -9,6 +10,6 @@
 
 @media (max-width: 1000px) {
   .reportForm {
-    margin-top: 10rem;
+    /* margin-top: 10rem; */
   }
 }

@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import Nav from "./Nav";
 import { firebaseAuth } from "../../firebase";
 import { onAuthStateChanged } from "firebase/auth";
-import LogOut from "../user/LogOut";
+import LogOut from "../authentication/LogOut";
 
 const Header = () => {
   const [name, setName] = useState();

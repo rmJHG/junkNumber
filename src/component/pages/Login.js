@@ -1,20 +1,35 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { onAuthStateChanged, signInWithEmailAndPassword } from "firebase/auth";
 import { firebaseAuth } from "../../firebase";
-import LogOut from "../user/LogOut";
+import LogOut from "../authentication/LogOut";
 
 const Login = () => {
   const enterEmail = useRef();
   const enterPassword = useRef();
-
   const nav = useNavigate();
-  // let userData;
+
+  useEffect(() => {
+    const checkLogin = onAuthStateChanged(firebaseAuth, (user) => {
+      console.log("hello");
+      if (user) {
+        nav("/");
+        console.log("hello");
+      } else {
+      }
+    });
+
+    return () => checkLogin();
+  }, [nav]);
 
   const loginSubmit = async (event) => {
     event.preventDefault();
 
-    await signInWithEmailAndPassword(firebaseAuth, enterEmail.current.value, enterPassword.current.value)
+    await signInWithEmailAndPassword(
+      firebaseAuth,
+      enterEmail.current.value,
+      enterPassword.current.value
+    )
       .then((userCredential) => {
         nav("/");
       })

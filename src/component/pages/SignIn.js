@@ -1,7 +1,11 @@
 import React, { useRef, useState } from "react";
-import SignInSuccess from "../user/SignInSuccess";
+import SignInSuccess from "../authentication/SignInSuccess";
 import { firebaseAuth } from "../../firebase";
-import { createUserWithEmailAndPassword, updateProfile, signOut } from "firebase/auth";
+import {
+  createUserWithEmailAndPassword,
+  updateProfile,
+  signOut,
+} from "firebase/auth";
 
 const SignIn = (props) => {
   const enterUserEmail = useRef();
@@ -11,7 +15,11 @@ const SignIn = (props) => {
   const userDataSubmit = async (event) => {
     event.preventDefault();
 
-    await createUserWithEmailAndPassword(firebaseAuth, enterUserEmail.current.value, enterUserPassword.current.value)
+    await createUserWithEmailAndPassword(
+      firebaseAuth,
+      enterUserEmail.current.value,
+      enterUserPassword.current.value
+    )
       .then((result) => {
         updateProfile(firebaseAuth.currentUser, {
           displayName: enterNickName.current.value,
@@ -30,7 +38,13 @@ const SignIn = (props) => {
     <form onSubmit={userDataSubmit}>
       <input type="email" ref={enterUserEmail} />
       <input type="password" ref={enterUserPassword} />
-      <input type="text" ref={enterNickName} placeholder="닉네임" />
+      <input
+        type="text"
+        ref={enterNickName}
+        minLength={3}
+        maxLength={8}
+        placeholder="닉네임"
+      />
       <button>회원가입</button>
     </form>
   );

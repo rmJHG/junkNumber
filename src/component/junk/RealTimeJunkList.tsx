@@ -1,9 +1,21 @@
 import React from "react";
 import Junk from "./Junk";
 import classes from "./RealTimeJunkList.module.css";
-const RealTimeJunkList = (props) => {
-  const junkData = props.junk;
 
+interface JunkItem {
+  id: number;
+  number: string;
+  postName: string;
+  postDate: string;
+  postMS: string;
+}
+
+interface OwlProps {
+  junk: junkItem[];
+}
+const RealTimeJunkList: React.FC<OwlProps> = ({ junk }) => {
+  const junkData = junk as JunkItem[];
+  const sliceAndReverseData = junkData.reverse().slice(0, 10);
   return (
     <ul className={classes.listBox}>
       <div className={classes.title}>
@@ -16,7 +28,7 @@ const RealTimeJunkList = (props) => {
           <p>등록일</p>
         </div>
       </div>
-      {junkData.reverse().map((res) => (
+      {sliceAndReverseData.map((res) => (
         <Junk
           key={res.id}
           id={res.id}
