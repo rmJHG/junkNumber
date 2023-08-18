@@ -4,6 +4,7 @@ import { dbRef } from "../../firebase";
 import RealTimeJunkList from "../junk/RealTimeJunkList";
 import SearchJunk from "../junk/SearchJunk";
 import TopReportedJunkList from "../junk/TopReportedJunkList";
+import Loading from "../loading/Loading";
 
 const MainPage = () => {
   const [junk, setJunk] = useState([]);
@@ -33,7 +34,7 @@ const MainPage = () => {
   }, []);
 
   if (isLoading) {
-    return <>로딩중</>;
+    return <Loading />;
   }
 
   return (

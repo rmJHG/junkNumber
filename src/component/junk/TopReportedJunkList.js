@@ -1,5 +1,5 @@
 import React from "react";
-import classes from "./TopReportedJunkList.module.css";
+import classes from "./style/TopReportedJunkList.module.css";
 
 const TopReportedJunkList = (props) => {
   const countDuplicates = (arr, prop) => {

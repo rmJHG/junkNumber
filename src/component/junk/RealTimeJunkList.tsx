@@ -1,6 +1,6 @@
 import React from "react";
 import Junk from "./Junk";
-import classes from "./RealTimeJunkList.module.css";
+import classes from "./style/RealTimeJunkList.module.css";
 
 interface JunkItem {
   id: number;

@@ -7,6 +7,7 @@ import Community from "./component/pages/Community";
 import ReportJunk from "./component/pages/ReportJunk";
 import Login from "./component/pages/Login";
 import SignIn from "./component/pages/SignIn";
+import SearchResult from "./component/junk/SearchResult";
 
 const App = () => {
   return (
@@ -17,6 +18,7 @@ const App = () => {
         <Route path="/report" element={<ReportJunk />} />
         <Route path="/login" element={<Login />} />
         <Route path="/create" element={<SignIn />} />
+        <Route path="/num/:searchQuery" element={<SearchResult />} />
       </Routes>
     </Layout>
   );

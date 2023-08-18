@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import classes from "./Junk.module.css";
+import classes from "./style/Junk.module.css";
 
 const Junk = (props) => {
   const [postedDate, setPostedDate] = useState();

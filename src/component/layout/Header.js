@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import classes from "./Header.module.css";
+import classes from "./style/Header.module.css";
 import { Link } from "react-router-dom";
 import Nav from "./Nav";
 import { firebaseAuth } from "../../firebase";

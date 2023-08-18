@@ -3,7 +3,8 @@ import { dbRef, firebaseAuth } from "../../firebase";
 import { push } from "firebase/database";
 import { onAuthStateChanged } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
-import classes from "./ReportJunk.module.css";
+import classes from "./style/ReportJunk.module.css";
+
 const ReportJunk = () => {
   const nav = useNavigate();
   const [checkedType, setCheckedType] = useState("보이스피싱");

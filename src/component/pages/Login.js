@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { onAuthStateChanged, signInWithEmailAndPassword } from "firebase/auth";
 import { firebaseAuth } from "../../firebase";
@@ -8,14 +8,14 @@ const Login = () => {
   const enterEmail = useRef();
   const enterPassword = useRef();
   const nav = useNavigate();
+  const [content, setContent] = useState(false);
 
   useEffect(() => {
     const checkLogin = onAuthStateChanged(firebaseAuth, (user) => {
-      console.log("hello");
       if (user) {
         nav("/");
-        console.log("hello");
       } else {
+        setContent(true);
       }
     });
 
@@ -39,17 +39,20 @@ const Login = () => {
   };
 
   return (
-    <>
-      <form onSubmit={loginSubmit}>
-        <input type="text" ref={enterEmail} />
-        <input type="password" ref={enterPassword} />
+    <div>
+      {content && (
+        <div>
+          <form onSubmit={loginSubmit}>
+            <input type="text" ref={enterEmail} />
+            <input type="password" ref={enterPassword} />
 
-        <button>로그인</button>
-      </form>
-
-      <LogOut />
-      <Link to="/create">회원가입</Link>
-    </>
+            <button>로그인</button>
+          </form>
+          <LogOut />
+          <Link to="/create">회원가입</Link>
+        </div>
+      )}
+    </div>
   );
 };
 

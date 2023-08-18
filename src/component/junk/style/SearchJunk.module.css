@@ -4,6 +4,27 @@
   display: flex;
   justify-content: center;
 }
+.searchBox > input,
+button {
+  border: none;
+}
+
+.searchBox > input {
+  width: 300px;
+  height: 30px;
+  padding: 3px 15px;
+}
+.searchBox > input:focus {
+  outline: none;
+}
+
+.searchBox > button {
+  width: 15%;
+  background-color: #004080;
+  color: white;
+
+  border-radius: 0 10% 10% 0;
+}
 @media (max-width: 576px) {
   .container {
     padding: 10% 0;
@@ -28,5 +49,14 @@
 @media (min-width: 1200px) {
   .container {
     padding: 15% 0;
+  }
+  .searchBox > input {
+    width: 500px;
+    height: 30px;
+    padding: 3px 15px;
+  }
+
+  .searchBox > button {
+    width: 20%;
   }
 }
