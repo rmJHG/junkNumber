@@ -7,7 +7,7 @@ import Community from "./component/pages/Community";
 import ReportJunk from "./component/pages/ReportJunk";
 import Login from "./component/pages/Login";
 import SignIn from "./component/pages/SignIn";
-import SearchResult from "./component/junk/SearchResult";
+import SearchResult from "./component/search/SearchResult";
 
 const App = () => {
   return (

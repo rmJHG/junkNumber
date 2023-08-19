@@ -1,0 +1,36 @@
+.searchQuery {
+  width: 100%;
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.searchQuery > p {
+  font-size: 50px;
+}
+
+.reportListBox {
+  overflow-y: scroll;
+  max-height: 700px;
+  border-top: 2px solid black;
+  border-bottom: 2px solid black;
+}
+
+@media (max-width: 576px) {
+  .reportListBox {
+    max-height: 550px;
+  }
+}
+@media (min-width: 576px) {
+  .reportListBox {
+    max-height: 650px;
+  }
+}
+@media (min-width: 768px) {
+}
+@media (min-width: 992px) {
+}
+
+@media (min-width: 1200px) {
+}

@@ -1,11 +1,13 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { dbRef, firebaseAuth } from "../../firebase";
 import { push } from "firebase/database";
 import { onAuthStateChanged } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import classes from "./style/ReportJunk.module.css";
+import JunkNumContext from "../context/JunkDataContext";
 
 const ReportJunk = () => {
+  const context = useContext(JunkNumContext);
   const nav = useNavigate();
   const [checkedType, setCheckedType] = useState("보이스피싱");
   const [content, setContent] = useState(false);
@@ -13,6 +15,7 @@ const ReportJunk = () => {
 
   const enterFirstNumRef = useRef();
   const enterLastNumRef = useRef();
+  const enterJunkComent = useRef();
 
   const handleLastNumInput = (e) => {
     const number = e.target.value
@@ -35,18 +38,25 @@ const ReportJunk = () => {
     let year = today.getFullYear();
     let month = "00" + (today.getMonth() + 1);
     let day = "00" + today.getDate();
+    const date = `${year}/${month.toString().slice(-2)}/${day
+      .toString()
+      .slice(-2)}`;
 
-    await push(dbRef, {
-      number: `${enteredFirstNum}-${enteredLastNum}`,
-      postName: userNameRef.current,
-      postDate: `${year}/${month.toString().slice(-2)}/${day
-        .toString()
-        .slice(-2)} `,
-      postMS: today.getTime(),
-      type: checkedType,
-    }).then(() => {
-      nav("/");
-    });
+    if (enteredLastNum.length < 8) {
+      console.log("8칸미만");
+    } else {
+      await push(dbRef, {
+        number: `${enteredFirstNum}-${enteredLastNum}`,
+        postName: userNameRef.current,
+        postDate: date,
+        postMS: today.getTime(),
+        type: checkedType,
+        coment: enterJunkComent.current.value,
+      }).then(() => {
+        context.refreshFn();
+        nav("/");
+      });
+    }
   };
 
   useEffect(() => {
@@ -127,6 +137,8 @@ const ReportJunk = () => {
               id=""
               cols="30"
               rows="10"
+              maxLength={60}
+              ref={enterJunkComent}
             ></textarea>
           </div>
           <button>신고</button>

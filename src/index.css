@@ -110,6 +110,7 @@ body {
 ol,
 ul {
   list-style: none;
+  overflow: scroll;
 }
 blockquote,
 q {

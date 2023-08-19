@@ -3,12 +3,14 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
 import { BrowserRouter } from "react-router-dom";
-
+import { JunkDataProvider } from "./component/context/JunkDataContext";
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
 root.render(
   <BrowserRouter>
-    <App />
+    <JunkDataProvider>
+      <App />
+    </JunkDataProvider>
   </BrowserRouter>
 );

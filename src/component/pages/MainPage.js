@@ -1,45 +1,23 @@
-import React, { useEffect, useState } from "react";
-import { child, get } from "firebase/database";
-import { dbRef } from "../../firebase";
+import React, { useEffect, useState, useContext } from "react";
 import RealTimeJunkList from "../junk/RealTimeJunkList";
-import SearchJunk from "../junk/SearchJunk";
 import TopReportedJunkList from "../junk/TopReportedJunkList";
-import Loading from "../loading/Loading";
+import JunkNumContext from "../context/JunkDataContext";
+import SearchBar from "../search/SearchBar";
 
 const MainPage = () => {
   const [junk, setJunk] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
 
-  //db에서 전화번호 리스트 가져오기
+  const context = useContext(JunkNumContext);
+
   useEffect(() => {
-    const numbers = [];
-    get(child(dbRef, `/`))
-      .then((res) => {
-        if (res.exists()) {
-          const data = res.val();
-          for (const key in data) {
-            const number = {
-              id: key,
-              ...data[key],
-            };
-            numbers.push(number);
-          }
-          setJunk(numbers);
-          setIsLoading(false);
-        } else {
-          console.log("no data");
-        }
-      })
-      .catch((error) => console.log(error));
-  }, []);
-
-  if (isLoading) {
-    return <Loading />;
-  }
+    if (context.junkData !== undefined) {
+      setJunk(context.junkData);
+    }
+  }, [context.junkData]);
 
   return (
     <>
-      <SearchJunk />
+      <SearchBar />
       <RealTimeJunkList junk={junk} />
       <TopReportedJunkList junk={junk} />
     </>

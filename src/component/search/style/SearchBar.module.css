@@ -1,8 +1,10 @@
-.container {
-}
 .searchBox {
   display: flex;
   justify-content: center;
+}
+.searchBox > select {
+  border: none;
+  padding: 0 10px;
 }
 .searchBox > input,
 button {
@@ -23,7 +25,7 @@ button {
   background-color: #004080;
   color: white;
 
-  border-radius: 0 10% 10% 0;
+  border-radius: 0 10px 10px 0;
 }
 @media (max-width: 576px) {
   .container {
@@ -49,6 +51,11 @@ button {
 @media (min-width: 1200px) {
   .container {
     padding: 15% 0;
+  }
+  .searchBox {
+    /* width: 80%;
+    display: flex;
+    justify-content: center; */
   }
   .searchBox > input {
     width: 500px;
