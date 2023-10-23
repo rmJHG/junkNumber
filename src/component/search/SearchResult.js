@@ -21,7 +21,7 @@ const SearchResult = () => {
   }, [filteredData.length]);
 
   return (
-    <>
+    <div>
       <div className={classes.searchQuery}>
         <p>{params.searchQuery}</p>
       </div>
@@ -43,7 +43,7 @@ const SearchResult = () => {
           <p>신고된 내역이 없습니다.</p>
         )}
       </ol>
-    </>
+    </div>
   );
 };
 

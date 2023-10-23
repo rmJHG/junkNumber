@@ -15,6 +15,10 @@
 }
 .title {
   margin-left: 3%;
+  
+}
+.title:hover {
+cursor: pointer;
 }
 .headerContent {
   display: flex;
@@ -30,4 +34,8 @@
 
 .loginInfoContainer > p:first-child {
   font-family: HakgyoansimWoojuR;
+}
+
+.loginButton {
+  margin-right: 1rem;
 }
