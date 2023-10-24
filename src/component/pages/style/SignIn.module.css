@@ -1,0 +1,48 @@
+.container {
+  width: 100%;
+  height: 100%;
+  padding: 2rem;
+  display: flex;
+  justify-content: center;
+}
+
+.container > form {
+  width: 40%;
+  height: 20rem;
+  margin-top: 5rem;
+  border: 1px solid #ccc;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: #fff;
+}
+
+.inputContainer {
+  display: flex;
+  flex-direction: column;
+}
+.inputContainer > div:nth-child(2), .inputContainer>div:last-child {
+  margin-top: 1rem;
+}
+
+.inputContainer > div > input {
+  width: 100%;
+  margin-top: 0.5rem;
+  padding: 0.5rem;
+  background-color: #f8f8f8;
+  box-sizing: border-box;
+  border-radius: 3rem;
+}
+.btnContainer {
+  width: 100%;
+  height: 2rem;
+  display: flex;
+  justify-content: end;
+}
+
+.btnContainer > button {
+  padding: 0.5rem 0.7rem;
+  font-size: 1rem;
+  border-radius: 30rem;
+}

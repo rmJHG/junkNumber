@@ -8,6 +8,7 @@ import {
   onAuthStateChanged,
 } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
+import classes from "./style/SignIn.module.css";
 
 const SignIn = (props) => {
   const enterUserEmail = useRef();
@@ -52,18 +53,34 @@ const SignIn = (props) => {
   return (
     <>
       {content && (
-        <form onSubmit={userDataSubmit}>
-          <input type="email" ref={enterUserEmail} />
-          <input type="password" ref={enterUserPassword} />
-          <input
-            type="text"
-            ref={enterNickName}
-            minLength={3}
-            maxLength={8}
-            placeholder="닉네임"
-          />
-          <button>회원가입</button>
-        </form>
+        <div className={classes.container}>
+          <form onSubmit={userDataSubmit}>
+            <div className={classes.inputContainer}>
+              <div>
+                <label htmlFor="userId">ID</label>
+                <input type="email" id="userId" ref={enterUserEmail} />
+              </div>
+              <div>
+                <label htmlFor="dd">PASSWORD</label>
+                <input type="password" id="dd" ref={enterUserPassword} />
+              </div>
+              <div>
+                <label htmlFor="userName">USER NAME</label>
+                <input
+                  type="text"
+                  ref={enterNickName}
+                  minLength={3}
+                  maxLength={8}
+                />
+              </div>
+            </div>
+
+            <div className={classes.btnContainer}>
+              <button>가입</button>
+            </div>
+
+          </form>
+        </div>
       )}
       {signState && <SignInSuccess />}
     </>
