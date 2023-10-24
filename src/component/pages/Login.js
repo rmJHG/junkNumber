@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { onAuthStateChanged, signInWithEmailAndPassword } from "firebase/auth";
 import { firebaseAuth } from "../../firebase";
-import LogOut from "../authentication/LogOut";
+import classes from "./style/Login.module.css";
 
 const Login = () => {
   const enterEmail = useRef();
@@ -39,17 +39,31 @@ const Login = () => {
   };
 
   return (
-    <div>
+    <div className={classes.container}>
       {content && (
         <div>
           <form onSubmit={loginSubmit}>
-            <input type="text" ref={enterEmail} />
-            <input type="password" ref={enterPassword} />
+            <div className={classes.inputContainer}>
+              <div>
+                <label htmlFor="email">email</label>
+                <input type="text" ref={enterEmail} />
+              </div>
 
-            <button>로그인</button>
+              <div>
+                <label htmlFor="password">password</label>
+                <input type="password" ref={enterPassword} />
+              </div>
+            </div>
+            <div className={classes.btnContainer}>
+              <button>로그인</button>
+            </div>
           </form>
-          <LogOut />
-          <Link to="/create">회원가입</Link>
+          <div className={classes.linkContainer}>
+            <Link className={classes.signBtn} to="/create">
+              회원가입
+            </Link>
+            <Link to="/help">고객센터</Link>
+          </div>
         </div>
       )}
     </div>
