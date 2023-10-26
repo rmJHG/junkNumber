@@ -33,8 +33,6 @@ const ReportJunk = () => {
     const enteredLastNum = enterLastNumRef.current.value;
     const enteredDetail = enterDetail.current.value;
 
-    console.log(enteredDetail);
-
     let today = new Date();
     let year = today.getFullYear();
     let month = "00" + (today.getMonth() + 1);
@@ -44,7 +42,6 @@ const ReportJunk = () => {
       .slice(-2)}`;
 
     if (enteredLastNum.length < 8) {
-      console.log("8칸미만");
       setCheckNum(false);
     } else {
       await push(dbRef, {
@@ -62,8 +59,8 @@ const ReportJunk = () => {
   };
 
   const onTextareaHandler = (e) => {
-    setTextCount(e.target.value.length)
-  }
+    setTextCount(e.target.value.length);
+  };
   useEffect(() => {
     const fetchData = onAuthStateChanged(firebaseAuth, (user) => {
       if (user) {

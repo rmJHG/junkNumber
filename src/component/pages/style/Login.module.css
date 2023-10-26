@@ -8,9 +8,9 @@
 
 .container > div {
   width: 300px;
+  margin: 5rem 0;
   border: 1px solid #ccc;
   padding: 2rem;
-  margin: 5rem 0;
   background-color: #fff;
 }
 .inputContainer > div {
@@ -26,8 +26,8 @@
 
 .inputContainer > div > input {
   width: 60%;
-  border-radius: 30px;
   margin-left: 0.5rem;
+  border-radius: 30px;
   background-color: #f9f6f0;
 }
 
@@ -38,13 +38,12 @@
 .btnContainer > button {
   width: 100%;
   margin-bottom: 1rem;
-  padding: 0.5rem;
   border-radius: 30rem;
+  padding: 0.5rem;
   font-size: 1rem;
 }
 
 .linkContainer {
-
   display: flex;
   justify-content: center;
 }

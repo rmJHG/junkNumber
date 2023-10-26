@@ -3,17 +3,24 @@ import classes from "./style/Header.module.css";
 import { Link, useNavigate } from "react-router-dom";
 import Nav from "./Nav";
 import { firebaseAuth } from "../../firebase";
-import { onAuthStateChanged } from "firebase/auth";
-import LogOut from "../authentication/LogOut";
+import { onAuthStateChanged, signOut } from "firebase/auth";
 
 const Header = () => {
   const [name, setName] = useState();
   const [loading, setLoading] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
   const nav = useNavigate();
   const titleCLickEvent = () => {
     nav("/");
   };
-
+  const modalHandler = () => {
+    setIsOpen(!isOpen);
+  };
+  const logOutBtnClick = () => {
+    signOut(firebaseAuth);
+    setIsOpen(!isOpen);
+    nav("/");
+  };
   useEffect(() => {
     const unsubcribe = onAuthStateChanged(firebaseAuth, (user) => {
       if (user) {
@@ -32,6 +39,15 @@ const Header = () => {
 
   return (
     <header className={classes.header}>
+      {isOpen && (
+       
+          <ul className={classes.menu} onClick={modalHandler}>
+            <li>
+              <p onClick={logOutBtnClick}>로그아웃</p>
+            </li>
+          </ul>
+   
+      )}
       <div className={classes.headerContent}>
         <p className={classes.title} onClick={titleCLickEvent}>
           JunkNumber
@@ -40,8 +56,10 @@ const Header = () => {
           <p>LOADING</p>
         ) : name ? (
           <div className={classes.loginInfoContainer}>
-            <p>{name}</p>
-            <LogOut />
+            <p onClick={modalHandler}>{name}  </p>
+           <div className={classes.modalState}>
+           {isOpen ? <p>▼</p> : <p>▽</p> }
+           </div>
           </div>
         ) : (
           <Link to="/Login">

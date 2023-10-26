@@ -5,10 +5,10 @@
 }
 
 .main {
+  min-width: 100%;
+  min-height: calc(100% - 7.5rem);
   height: auto;
   margin: 0 auto;
-  min-height: calc(100% - 7.5rem);
-  min-width: 100%;
 }
 
 @media (min-width: 576px) {

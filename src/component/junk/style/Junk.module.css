@@ -4,9 +4,8 @@
 }
 
 .junkContainer > div:first-child {
-  display: flex;
   width: 30%;
-  justify-content: center;
+  display: flex;
   justify-content: left;
 }
 

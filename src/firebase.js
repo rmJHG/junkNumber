@@ -23,5 +23,6 @@ export const firebaseApp = initializeApp(firebaseConfig);
 export const firebaseAuth = getAuth(firebaseApp);
 export const firebaseDb = getDatabase(firebaseApp);
 export const dbRef = ref(firebaseDb, "/numbers");
+export const userNameDbRef = ref(firebaseDb, "/userName")
 //로그인 유지관리(웹 종료시 기록삭제)
 setPersistence(firebaseAuth, browserSessionPersistence);
