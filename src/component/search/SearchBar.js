@@ -6,6 +6,7 @@ const SearchBar = () => {
   const nav = useNavigate();
   const enterFirstNumRef = useRef();
   const enterLastNumRef = useRef();
+
   const handleChange = (e) => {
     e.preventDefault();
     const number = e.target.value
@@ -16,10 +17,12 @@ const SearchBar = () => {
   };
 
   const searchNumber = (e) => {
+    e.preventDefault();
+
     const enteredFirstNum = enterFirstNumRef.current.value;
     const enteredLastNum = enterLastNumRef.current.value;
-    e.preventDefault();
-    nav(`/num/${enteredFirstNum}-${enteredLastNum}`);
+    const replaceLastNum = enteredLastNum.replace("-", "");
+    nav(`/num/${enteredFirstNum}${replaceLastNum}`);
   };
   return (
     <div className={classes.container}>

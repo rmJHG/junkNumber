@@ -6,12 +6,16 @@ import classes from "./style/SearchResult.module.css";
 
 const SearchResult = () => {
   const params = useParams();
+  const searchedNumber = params.searchQuery;
+  const searchedReplaceNumber = searchedNumber.replace(
+    /(^02.{0}|^01.{1}|[0-9]{3,4})([0-9]{3,4})([0-9]{4})/g,
+    "$1-$2-$3"
+  );
   const context = useContext(JunkNumContext);
   const data = context.junkData;
   const [hasData, setHasData] = useState(false);
-
   const filteredData = data.filter(
-    (data) => data.number === params.searchQuery
+    (data) => data.number === searchedReplaceNumber
   );
 
   useEffect(() => {
@@ -23,7 +27,9 @@ const SearchResult = () => {
   return (
     <div>
       <div className={classes.searchQuery}>
-        <p>{params.searchQuery}</p>
+        <p>
+          {searchedNumber} / {searchedReplaceNumber}
+        </p>
       </div>
       <ol className={classes.reportListBox}>
         {hasData ? (
