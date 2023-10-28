@@ -25,15 +25,14 @@ const SearchResult = () => {
   }, [filteredData.length]);
 
   return (
-    <div>
+    <div className={classes.container}>
       <div className={classes.searchQuery}>
-        <p>
-          {searchedNumber} / {searchedReplaceNumber}
-        </p>
+        <p>{searchedReplaceNumber}</p>
+        <p>{searchedNumber}</p>
       </div>
-      <ol className={classes.reportListBox}>
-        {hasData ? (
-          filteredData.map((res) => {
+      {hasData ? (
+        <ol className={classes.reportListBox}>
+          {filteredData.map((res) => {
             return (
               <SearchedJunk
                 key={res.id}
@@ -44,11 +43,13 @@ const SearchResult = () => {
                 coment={res.coment}
               />
             );
-          })
-        ) : (
+          })}
+        </ol>
+      ) : (
+        <div className={classes.empty}>
           <p>신고된 내역이 없습니다.</p>
-        )}
-      </ol>
+        </div>
+      )}
     </div>
   );
 };
