@@ -1,5 +1,4 @@
 import React, { useEffect, useRef, useState } from "react";
-import classes from "./style/Junk.module.css";
 
 const Junk = (props) => {
   const [postedDate, setPostedDate] = useState();
@@ -23,16 +22,12 @@ const Junk = (props) => {
   }, [props.postDate, props.postMS, today]);
 
   return (
-    <li className={classes.junkContainer}>
-      <div>
-        <p>{props.number}</p>
-      </div>
-
-      <div className={classes.info}>
-        <p>{props.postName}</p>
-        <p>{postedDate}</p>
-      </div>
-    </li>
+    <tr align="center">
+      <td>{props.postIndex}</td>
+      <td>{props.number}</td>
+      <td>{props.postName}</td>
+      <td>{postedDate}</td>
+    </tr>
   );
 };
 

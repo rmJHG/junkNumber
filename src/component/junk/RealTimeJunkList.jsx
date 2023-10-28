@@ -6,28 +6,36 @@ const RealTimeJunkList = ({ junk }) => {
   const junkData = junk;
   const sliceAndReverseData = junkData.slice(0, 10);
   return (
-    <ul className={classes.listBox}>
-      <div className={classes.title}>
-        <p>실시간 신고</p>
-      </div>
-      <div className={classes.listHeader}>
-        <p>번호</p>
-        <div className={classes.info}>
-          <p>작성자</p>
-          <p>등록일</p>
-        </div>
-      </div>
-      {sliceAndReverseData.map((res) => (
-        <Junk
-          key={res.id}
-          id={res.id}
-          number={res.number}
-          postName={res.postName}
-          postDate={res.postDate}
-          postMS={res.postMS}
-        />
-      ))}
-    </ul>
+    <div className={classes.container}>
+      <section>
+        <header className={classes.headerContainer}>
+          <div>
+            <span>실시간 신고</span>
+          </div>
+        </header>
+
+        <table className={classes.tableContainer}>
+          <tr align="center">
+            <td></td>
+            <td>번호</td>
+            <td>작성자</td>
+            <td>등록일</td>
+          </tr>
+
+          {sliceAndReverseData.map((res, index) => (
+            <Junk
+              key={res.id}
+              id={res.id}
+              number={res.number}
+              postName={res.postName}
+              postDate={res.postDate}
+              postMS={res.postMS}
+              postIndex={index + 1}
+            />
+          ))}
+        </table>
+      </section>
+    </div>
   );
 };
 

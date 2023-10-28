@@ -1,55 +1,40 @@
-.topReportJunkList {
+.container {
   width: 100%;
   height: auto;
-  border: 1px solid rgb(208, 208, 208);
-  border-radius: 5px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  background-color: white;
 }
-.title {
+.headerContainer {
+  border-bottom: 1px solid #ccc;
+  padding: 1rem;
+  background-color: #004080;
+  font-family: Ramche;
+  font-size: 15px;
+  color: white;
+  border-radius: 10px 10px 0 0;
+}
+.tableContainer {
   width: 100%;
-  border-radius: 4px 4px 0 0;
-  border-bottom: 1px soild rgb(208, 208, 208);
-  padding: 15px;
-  background-color: white;
 }
-.title > p {
-  font-weight: 500;
+.tableContainer > tr {
+  border-bottom: 1px solid #ccc;
 }
-.header {
-  border-top: 1px solid rgb(208, 208, 208);
-  border-bottom: 1px solid rgb(208, 208, 208);
-  padding: 5px 2px;
-  display: flex;
-  justify-content: space-evenly;
+.tableContainer > tr:first-child {
+  background-color: #f9f6f0;
 }
-.header > p:first-child {
-  width: 30%;
-}
-.header > p:last-child {
-  width: 15%;
-}
-.junk {
-  border-bottom: 1px solid rgb(208, 208, 208);
-  padding: 2px;
-  display: flex;
-  justify-content: space-evenly;
-  font-weight: 700;
-  color: black;
-}
-.junk:nth-child(n + 6) {
-  background-color: white;
-  font-weight: 400;
-}
-.junk:last-child {
+.tableContainer > tr:last-child {
   border: none;
-  border-radius: 0 0 5px 5px;
+}
+.tableContainer>tr:nth-child(2) >td{
+font-weight: 500;
+}
+td {
+  padding: 4px;
+  font-family: Pretendard, Malgun Gothic, -apple-system, Dotum, sans-serif;
+  font-size: 14px;
 }
 
-.junk > p:first-child {
-  width: 30%;
-}
-.junk > p:last-child {
-  width: 15%;
-}
 @media (max-width: 576px) {
 }
 @media (min-width: 576px) {

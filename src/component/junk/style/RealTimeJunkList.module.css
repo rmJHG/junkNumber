@@ -1,49 +1,62 @@
-.listBox {
+.container {
   width: 100%;
-  height: auto;
-  border: 1px solid rgb(208, 208, 208);
-  border-radius: 5px;
-  margin-bottom: 30px;
-}
-.title {
-  border-radius: 4px 4px 0 0;
-  padding: 15px;
-  background-color: white;
-}
-.listHeader {
-  border-top: 1px solid rgb(208, 208, 208);
-  border-bottom: 1px solid rgb(208, 208, 208);
-  padding: 5px 2px;
-  display: flex;
-  justify-content: space-evenly;
-}
-.listHeader > p:first-child {
-  width: 30%;
-}
-.info {
-  width: 30%;
-  display: flex;
-  justify-content: space-between;
-}
-.listBox > li {
-  border-bottom: 1px solid rgb(208, 208, 208);
-  padding: 2px;
+  height: 100%;
+  border: 1px solid #ccc;
+  border-radius: 10px;
   background-color: white;
 }
 
-.listBox > li:last-child {
+.headerContainer {
+  border-bottom: 1px solid #ccc;
+  padding: 1rem;
+  background-color: #004080;
+  font-family: Ramche;
+  font-size: 15px;
+  color: white;
+  border-radius: 10px 10px 0 0;
+}
+
+.tableContainer {
+  width: 100%;
+}
+.tableContainer > tr {
+  border-bottom: 1px solid #ccc;
+}
+.tableContainer > tr:first-child {
+  background-color: #f9f6f0;
+}
+.tableContainer > tr:last-child {
   border: none;
-  border-radius: 0 0 5px 5px;
+}
+td {
+  padding: 4px;
+  font-family: Pretendard, Malgun Gothic, -apple-system, Dotum, sans-serif;
+  font-size: 14px;
 }
 
 @media (max-width: 576px) {
+  .container {
+    margin-bottom: 1rem;
+  }
 }
-@media (min-width: 576px) {
+@media (min-width: 576px) and ( max-width:767px) {
+  .container {
+    margin-bottom: 1rem;
+  }
 }
-@media (min-width: 768px) {
+@media (min-width: 768px) and ( max-width:991px) {
+  .container {
+    margin-bottom: 1rem;
+  }
 }
-@media (min-width: 992px) {
+@media (min-width: 992px ) and ( max-width:1199px) {
+  .container {
+    margin-bottom: 1rem;
+  }
 }
 
 @media (min-width: 1200px) {
+  .container {
+    margin-right: 1rem;
+  }
 }

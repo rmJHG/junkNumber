@@ -19,8 +19,10 @@ const MainPage = () => {
   return (
     <div className={classes.container}>
       <SearchBar />
-      <RealTimeJunkList junk={junk} />
-      <TopReportedJunkList junk={junk} />
+      <div className={classes.tableContainer}>
+        <RealTimeJunkList junk={junk} />
+        <TopReportedJunkList junk={junk} />
+      </div>
     </div>
   );
 };

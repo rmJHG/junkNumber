@@ -18,7 +18,6 @@ const SearchBar = () => {
 
   const searchNumber = (e) => {
     e.preventDefault();
-
     const enteredFirstNum = enterFirstNumRef.current.value;
     const enteredLastNum = enterLastNumRef.current.value;
     const replaceLastNum = enteredLastNum.replace("-", "");

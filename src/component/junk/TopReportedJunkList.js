@@ -18,21 +18,31 @@ const TopReportedJunkList = (props) => {
     .slice(0, 10);
 
   return (
-    <ul className={classes.topReportJunkList}>
-      <div className={classes.title}>
-        <p>많은 신고</p>
-      </div>
-      <div className={classes.header}>
-        <p>번호</p>
-        <p>신고된 수</p>
-      </div>
-      {sortedData.map(([number, count]) => (
-        <li className={classes.junk} key={number}>
-          <p>{number}</p>
-          <p>{count}</p>
-        </li>
-      ))}
-    </ul>
+    <div className={classes.container}>
+      <section>
+        <header className={classes.headerContainer}>
+          <div>
+            <span>많이 신고된 순위</span>
+          </div>
+        </header>
+
+        <table className={classes.tableContainer}>
+          <tr align="center">
+            <td></td>
+            <td>번호</td>
+            <td>신고된 수</td>
+          </tr>
+
+          {sortedData.map(([number, count], index) => (
+            <tr align="center" key={number}>
+              <td>{index + 1}</td>
+              <td>{number}</td>
+              <td>{count}</td>
+            </tr>
+          ))}
+        </table>
+      </section>
+    </div>
   );
 };
 

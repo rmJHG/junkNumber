@@ -7,7 +7,7 @@ import {
   signOut,
   onAuthStateChanged,
 } from "firebase/auth";
-import { child, get } from "firebase/database";
+import { child, get, push } from "firebase/database";
 import { useNavigate } from "react-router-dom";
 import classes from "./style/SignIn.module.css";
 
@@ -72,6 +72,10 @@ const SignIn = (props) => {
       .then(() => {
         signOut(firebaseAuth);
         setSignState(true);
+      }).then(()=>{
+        push(userNameDbRef, {
+          name:enterNickName.current.value,
+        })
       })
       .catch((error) => {
         console.log(error);

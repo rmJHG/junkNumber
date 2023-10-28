@@ -33,17 +33,17 @@ button {
 }
 @media (min-width: 576px) {
   .container {
-    padding: 15% 0;
+    padding: 10% 0;
   }
 }
 @media (min-width: 768px) {
   .container {
-    padding: 15% 0;
+    padding: 10% 0;
   }
 }
 @media (min-width: 992px) {
   .container {
-    padding: 15% 0;
+    padding: 8% 0;
   }
 }
 
