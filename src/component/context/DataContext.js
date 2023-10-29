@@ -1,20 +1,23 @@
 import React, { useEffect, useState, createContext } from "react";
 import { child, get } from "firebase/database";
-import { dbRef } from "../../firebase";
+import { dbRef, postDbRef } from "../../firebase";
 import Loading from "../loading/Loading";
 
-const JunkNumContext = createContext({
+const DataContext = createContext({
   junkData: [],
   refrashFn: () => {},
 });
 
-export const JunkDataProvider = (props) => {
+export const DataProvider = (props) => {
   const [junkData, setJunkData] = useState([]);
+  const [postData, setPostData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [refresh, setRefresh] = useState(-1);
 
   useEffect(() => {
     const numbers = [];
+    const posts = [];
+
     get(child(dbRef, `/`))
       .then((res) => {
         if (res.exists()) {
@@ -35,13 +38,31 @@ export const JunkDataProvider = (props) => {
       .finally(() => {
         setIsLoading(false);
       });
+
+    get(postDbRef, "/").then((res) => {
+      if (res.exists()) {
+        const data = res.val();
+        for (const key in data) {
+          const post = {
+            id: key,
+            ...data[key],
+          };
+          posts.push(post);
+        }
+        setPostData(posts);
+      } else {
+        console.log("no data");
+      }
+    });
   }, [refresh]);
 
   const refreshControl = () => {
     setRefresh(refresh * -1);
   };
+
   const data = {
     junkData: junkData,
+    postData: postData,
     refreshFn: refreshControl,
   };
 
@@ -50,10 +71,8 @@ export const JunkDataProvider = (props) => {
   }
 
   return (
-    <JunkNumContext.Provider value={data}>
-      {props.children}
-    </JunkNumContext.Provider>
+    <DataContext.Provider value={data}>{props.children}</DataContext.Provider>
   );
 };
 
-export default JunkNumContext;
+export default DataContext;

@@ -4,7 +4,7 @@ import { push } from "firebase/database";
 import { onAuthStateChanged } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import classes from "./style/ReportJunk.module.css";
-import JunkNumContext from "../context/JunkDataContext";
+import JunkNumContext from "../context/DataContext";
 
 const ReportJunk = () => {
   const context = useContext(JunkNumContext);

@@ -27,19 +27,24 @@ const TopReportedJunkList = (props) => {
         </header>
 
         <table className={classes.tableContainer}>
-          <tr align="center">
-            <td></td>
-            <td>번호</td>
-            <td>신고된 수</td>
-          </tr>
 
-          {sortedData.map(([number, count], index) => (
-            <tr align="center" key={number}>
-              <td>{index + 1}</td>
-              <td>{number}</td>
-              <td>{count}</td>
+          <thead className={classes.tableInfoContainer}>
+            <tr align="center">
+              <td></td>
+              <td>번호</td>
+              <td>신고된 수</td>
             </tr>
-          ))}
+          </thead>
+
+          <tbody className={classes.tableDataContainer}>
+            {sortedData.map(([number, count], index) => (
+              <tr align="center" key={number}>
+                <td>{index + 1}</td>
+                <td>{number}</td>
+                <td>{count}</td>
+              </tr>
+            ))}
+          </tbody>
         </table>
       </section>
     </div>

@@ -17,22 +17,23 @@
 .tableContainer {
   width: 100%;
 }
-.tableContainer > tr {
+.tableContainer > tbody > tr {
   border-bottom: 1px solid #ccc;
 }
-.tableContainer > tr:first-child {
+.tableContainer > thead > tr:first-child {
   background-color: #f9f6f0;
 }
-.tableContainer > tr:last-child {
+.tableInfoContainer > tr {
+  border-bottom: 1px solid #ccc;
+}
+.tableDataContainer > tr:last-child {
   border: none;
 }
-.tableContainer>tr:nth-child(2) >td{
-font-weight: 500;
-}
-td {
-  padding: 4px;
-  font-family: Pretendard, Malgun Gothic, -apple-system, Dotum, sans-serif;
-  font-size: 14px;
+.tableDataContainer > tr:nth-child(1),
+.tableDataContainer > tr:nth-child(2),
+.tableDataContainer > tr:nth-child(3) > td {
+  font-weight: 700;
+  background-color: #f9f6f0;
 }
 
 @media (max-width: 576px) {

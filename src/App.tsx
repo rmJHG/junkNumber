@@ -8,6 +8,7 @@ import ReportJunk from "./component/pages/ReportJunk";
 import Login from "./component/pages/Login";
 import SignIn from "./component/pages/SignIn";
 import SearchResult from "./component/search/SearchResult";
+import PostDetail from "./component/community/PostDetail";
 
 const App = () => {
   return (
@@ -19,6 +20,7 @@ const App = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/create" element={<SignIn />} />
         <Route path="/num/:searchQuery" element={<SearchResult />} />
+        <Route path="/post/:postQuery" element={<PostDetail/>}/>
       </Routes>
     </Layout>
   );

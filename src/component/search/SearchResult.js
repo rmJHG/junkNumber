@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import JunkNumContext from "../context/JunkDataContext";
+import JunkNumContext from "../context/DataContext";
 import SearchedJunk from "./SearchedJunk";
 import classes from "./style/SearchResult.module.css";
 

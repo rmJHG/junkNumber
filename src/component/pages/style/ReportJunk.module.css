@@ -6,7 +6,7 @@
 }
 
 .reportForm {
-  width: 50%;
+  width: 70%;
   height: 100%;
   margin-top: 5rem;
   border: 1px solid #ccc;
@@ -96,21 +96,24 @@ input {
 }
 
 @media (max-width: 576px) {
-  .reportForm{
+  .reportForm {
     width: 100%;
   }
 }
-@media (min-width: 576px) and ( max-width:767px) {
-  .reportForm{
+@media (min-width: 576px) and (max-width: 767px) {
+  .reportForm {
     width: 100%;
   }
 }
-@media (min-width: 768px) and ( max-width:991px) {
+@media (min-width: 768px) and (max-width: 991px) {
   .container {
     margin-bottom: 1rem;
   }
+  .reportForm {
+    width: 80%;
+  }
 }
-@media (min-width: 992px ) and ( max-width:1199px) {
+@media (min-width: 992px) and (max-width: 1199px) {
   .container {
     margin-bottom: 1rem;
   }

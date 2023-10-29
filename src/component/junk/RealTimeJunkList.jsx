@@ -5,6 +5,7 @@ import classes from "./style/RealTimeJunkList.module.css";
 const RealTimeJunkList = ({ junk }) => {
   const junkData = junk;
   const sliceAndReverseData = junkData.slice(0, 10);
+  
   return (
     <div className={classes.container}>
       <section>
@@ -15,24 +16,28 @@ const RealTimeJunkList = ({ junk }) => {
         </header>
 
         <table className={classes.tableContainer}>
-          <tr align="center">
-            <td></td>
-            <td>번호</td>
-            <td>작성자</td>
-            <td>등록일</td>
-          </tr>
+          <thead className={classes.tableInfoContainer}>
+            <tr align="center">
+              <td></td>
+              <td>번호</td>
+              <td>작성자</td>
+              <td>등록일</td>
+            </tr>
+          </thead>
 
-          {sliceAndReverseData.map((res, index) => (
-            <Junk
-              key={res.id}
-              id={res.id}
-              number={res.number}
-              postName={res.postName}
-              postDate={res.postDate}
-              postMS={res.postMS}
-              postIndex={index + 1}
-            />
-          ))}
+          <tbody className={classes.tableDataContainer}>
+            {sliceAndReverseData.map((res, index) => (
+              <Junk
+                key={res.id}
+                id={res.id}
+                number={res.number}
+                postName={res.postName}
+                postDate={res.postDate}
+                postMS={res.postMS}
+                postIndex={index + 1}
+              />
+            ))}
+          </tbody>
         </table>
       </section>
     </div>
