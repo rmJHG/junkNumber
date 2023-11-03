@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 const Post = ({ index, writer, title, postDate, postMS }) => {
   const nav = useNavigate();
   const titleClickEvent = () => {
-    nav(`/post/${index}`);
+    nav(`/community/post/${index}`);
   };
 
   const [postedDate, setPostedDate] = useState();

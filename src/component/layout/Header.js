@@ -40,13 +40,11 @@ const Header = () => {
   return (
     <header className={classes.header}>
       {isOpen && (
-       
-          <ul className={classes.menu} onClick={modalHandler}>
-            <li>
-              <p onClick={logOutBtnClick}>로그아웃</p>
-            </li>
-          </ul>
-   
+        <ul className={classes.menu} onClick={modalHandler}>
+          <li>
+            <p onClick={logOutBtnClick}>로그아웃</p>
+          </li>
+        </ul>
       )}
       <div className={classes.headerContent}>
         <p className={classes.title} onClick={titleCLickEvent}>
@@ -56,10 +54,10 @@ const Header = () => {
           <p>LOADING</p>
         ) : name ? (
           <div className={classes.loginInfoContainer}>
-            <p onClick={modalHandler}>{name}  </p>
-           <div className={classes.modalState}>
-           {isOpen ? <p>▼</p> : <p>▽</p> }
-           </div>
+            <p onClick={modalHandler}>{name} </p>
+            <div className={classes.modalState}>
+              {isOpen ? <p>▼</p> : <p>▽</p>}
+            </div>
           </div>
         ) : (
           <Link to="/Login">

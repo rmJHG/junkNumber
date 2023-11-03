@@ -23,7 +23,6 @@ const Junk = (props) => {
 
   return (
     <tr align="center">
-      <td>{props.postIndex}</td>
       <td>{props.number}</td>
       <td>{props.postName}</td>
       <td>{postedDate}</td>

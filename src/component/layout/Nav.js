@@ -10,7 +10,7 @@ const Nav = (props) => {
             <Link to="/">메인</Link>
           </li>
           <li>
-            <Link to="/community">커뮤니티</Link>
+            <Link to="/community/1">커뮤니티</Link>
           </li>
           <li>
             <Link to="/report">피싱번호추가</Link>

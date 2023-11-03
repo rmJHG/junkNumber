@@ -1,7 +1,7 @@
 .container {
   width: 100%;
   height: 100%;
-  padding: 0 5rem;
+  padding: 0 5%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -9,11 +9,22 @@
   box-sizing: border-box;
 }
 
+.headerContainer {
+  width: 100%;
+  height: 2rem;
+  margin-top: 2rem;
+  padding: 1.5rem 5rem;
+  display: flex;
+  align-items: center;
+  background-color: #004080;
+  color: white;
+  font-family: Ramche;
+}
 .tableContainer {
-  width: 80%;
+  width: 100%;
   height: 100%;
   border-top: 1px solid #ccc;
-  border-bottom: 1px solid #ccc;
+  background-color: white;
 }
 
 .tableContainer > table {
@@ -21,7 +32,28 @@
   height: 100%;
 }
 
+.tableInfoContainer {
+  border-bottom: 1px solid #ccc;
+}
+.tableInfoContainer > tr > td {
+  padding: 0.6rem;
+}
+.tableDataContainer {
+  :hover {
+    background-color: #ccc;
+  }
+}
+.tableDataContainer > tr {
+  border-bottom: 1px solid #ccc;
+}
+.tableDataContainer > tr > td {
+  padding: 0.4rem;
+}
 
-.tableContainer > table > tr {
-    border-bottom: 1px solid #ccc;
+.tableDataContainer > tr > td:nth-child(2):hover {
+  cursor: pointer;
+}
+
+.pageContainer > ul {
+  display: flex;
 }

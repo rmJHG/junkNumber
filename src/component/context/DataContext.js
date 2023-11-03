@@ -5,6 +5,7 @@ import Loading from "../loading/Loading";
 
 const DataContext = createContext({
   junkData: [],
+  postData: [],
   refrashFn: () => {},
 });
 

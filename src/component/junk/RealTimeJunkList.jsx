@@ -5,7 +5,7 @@ import classes from "./style/RealTimeJunkList.module.css";
 const RealTimeJunkList = ({ junk }) => {
   const junkData = junk;
   const sliceAndReverseData = junkData.slice(0, 10);
-  
+
   return (
     <div className={classes.container}>
       <section>
@@ -16,9 +16,13 @@ const RealTimeJunkList = ({ junk }) => {
         </header>
 
         <table className={classes.tableContainer}>
+          <colgroup>
+            <col width="40%" />
+            <col width="20%" />
+            <col width="20%" />
+          </colgroup>
           <thead className={classes.tableInfoContainer}>
             <tr align="center">
-              <td></td>
               <td>번호</td>
               <td>작성자</td>
               <td>등록일</td>

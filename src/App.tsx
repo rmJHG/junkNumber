@@ -15,12 +15,12 @@ const App = () => {
     <Layout>
       <Routes>
         <Route path="/" element={<MainPage />} />
-        <Route path="/community" element={<Community />} />
+        <Route path="/community/:commuQuery" element={<Community />} />
         <Route path="/report" element={<ReportJunk />} />
         <Route path="/login" element={<Login />} />
         <Route path="/create" element={<SignIn />} />
         <Route path="/num/:searchQuery" element={<SearchResult />} />
-        <Route path="/post/:postQuery" element={<PostDetail/>}/>
+        <Route path="/community/post/:postQuery" element={<PostDetail/>}/>
       </Routes>
     </Layout>
   );
