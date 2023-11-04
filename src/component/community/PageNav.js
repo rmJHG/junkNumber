@@ -27,7 +27,9 @@ const PageNav = () => {
     // 이전 페이지 이동 버튼
     params.commuQuery > 10 && setPreviousPageBtnState(true);
     params.commuQuery > 10
-      ? setPreviousPageAdressState(Math.floor((params.commuQuery - 1) / 10)*10)
+      ? setPreviousPageAdressState(
+          Math.floor((params.commuQuery - 1) / 10) * 10
+        )
       : setPreviousPageBtnState(false);
     //다음 페이지 이동 버튼F
     Math.floor((params.commuQuery - 1) / 10) * 10 + 10 < chunkedData.length &&
@@ -38,42 +40,54 @@ const PageNav = () => {
         )
       : setNextPageBtnState(false);
   }, [params.commuQuery, chunkedData.length]);
-
+  //페이지 네이게이션
   const links = Array.from(
     chunkedData.slice(
       Math.floor((params.commuQuery - 1) / 10) * 10,
       Math.floor((params.commuQuery - 1) / 10) * 10 + 10
     ),
     (_, i) => (
-      <Link
-        key={i}
-        to={`/community/${i + Math.floor((params.commuQuery - 1) / 10) * 10 + 1}`}
-      >
-        {i + (Math.floor((params.commuQuery - 1) / 10) * 10) +1}
-      </Link>
+      <td key={i} align="center" className={classes.pageNav}>
+        <Link
+          to={`/community/${
+            i + Math.floor((params.commuQuery - 1) / 10) * 10 + 1
+          }`}
+        >
+          <p>{i + Math.floor((params.commuQuery - 1) / 10) * 10 + 1}</p>
+        </Link>
+      </td>
     )
   );
 
   return (
-    <div className={classes.pageContainer}>
-      <ul>
-        <div>
-          {previusPageBtnState && (
-            <Link to={`/community/${previousPageAdressState}`}>
-              <p>◀</p>
-            </Link>
-          )}
-        </div>
+    <div className={classes.pageNavContainer}>
+      <table>
+        <tbody>
+          <tr align="center" width="5%">
+            <td className={classes.btnTd}>
+              {previusPageBtnState ? (
+                <Link to={`/community/${previousPageAdressState}`}>
+                  <p className={classes.btnText}>&lt;이전</p>
+                </Link>
+              ) : (
+                <p className={classes.disableBtnText}>&lt;이전</p>
+              )}
+            </td>
 
-        {links}
-        <div>
-          {nextPageBtnState && (
-            <Link to={`/community/${nextPageAdressState}`}>
-              <p>▶</p>
-            </Link>
-          )}
-        </div>
-      </ul>
+            {links}
+
+            <td className={classes.btnTd}>
+              {nextPageBtnState ? (
+                <Link to={`/community/${nextPageAdressState}`}>
+                  <p className={classes.btnText}>다음&gt;</p>
+                </Link>
+              ) : (
+                <p className={classes.disableBtnText}>다음&gt;</p>
+              )}
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   );
 };

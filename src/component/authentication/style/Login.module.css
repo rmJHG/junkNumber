@@ -19,13 +19,12 @@
   justify-content: flex-end;
   align-items: center;
 }
-
-.inputContainer > div:last-child {
+.passwordContainer {
   margin: 1rem 0;
 }
 
 .inputContainer > div > input {
-  width: 60%;
+  width: 50%;
   margin-left: 0.5rem;
   border-radius: 30px;
   background-color: #f9f6f0;

@@ -44,13 +44,13 @@ const Login = () => {
         <div>
           <form onSubmit={loginSubmit}>
             <div className={classes.inputContainer}>
-              <div>
-                <label htmlFor="email">email</label>
+              <div className={classes.emailContainer}>
+                <label htmlFor="email">email :</label>
                 <input type="text" ref={enterEmail} />
               </div>
 
-              <div>
-                <label htmlFor="password">password</label>
+              <div className={classes.passwordContainer}>
+                <label htmlFor="password">password :</label>
                 <input type="password" ref={enterPassword} />
               </div>
             </div>
@@ -62,7 +62,6 @@ const Login = () => {
             <Link className={classes.signBtn} to="/create">
               회원가입
             </Link>
-            <Link to="/help">고객센터</Link>
           </div>
         </div>
       )}

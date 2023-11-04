@@ -2,9 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import DataContext from "../context/DataContext";
 import Post from "../community/Post";
 import classes from "./style/community.module.css";
-import {  useParams } from "react-router-dom";
-import { push } from "firebase/database";
-import { postDbRef } from "../../firebase";
+import { useParams } from "react-router-dom";
 import Loading from "../loading/Loading";
 import PageNav from "../community/PageNav";
 
@@ -37,23 +35,7 @@ const Community = () => {
   };
   const chunkedData = chunk(sortedPostData, 20);
 
-  const post = () => {
-    let today = new Date();
-    let year = today.getFullYear();
-    let month = "00" + (today.getMonth() + 1);
-    let day = "00" + today.getDate();
-    const date = `${year}/${month.toString().slice(-2)}/${day
-      .toString()
-      .slice(-2)}`;
-    push(postDbRef, {
-      content: `test`,
-      postDate: date,
-      postMS: today.getTime(),
-      title: "hello",
-      writer: "tester",
-    });
-  };
-    //데이터가 있는지 확인
+  //데이터가 있는지 확인
   useEffect(() => {
     chunkedData.length >= 1 ? setDataState(true) : setDataState(false);
   }, [chunkedData.length]);
@@ -70,10 +52,10 @@ const Community = () => {
         <div className={classes.tableContainer}>
           <table>
             <colgroup>
-              <col width="5%" />
-              <col width="25%" />
-              <col width="5%" />
-              <col width="5%" />
+              <col width="8%" />
+              <col width="50%" />
+              <col width="17%" />
+              <col width="20%" />
             </colgroup>
             <thead className={classes.tableInfoContainer}>
               <tr>
@@ -100,8 +82,7 @@ const Community = () => {
             </tbody>
           </table>
         </div>
-<PageNav/>
-        <input type="button" value="post" onClick={post} />
+        <PageNav />
       </div>
     );
   } else {

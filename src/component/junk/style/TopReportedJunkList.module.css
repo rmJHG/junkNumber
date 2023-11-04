@@ -17,6 +17,7 @@
 .tableContainer {
   width: 100%;
 }
+
 .tableContainer > tbody > tr {
   border-bottom: 1px solid #ccc;
 }
@@ -35,15 +36,7 @@
   font-weight: 700;
   background-color: #f9f6f0;
 }
-
-@media (max-width: 576px) {
-}
-@media (min-width: 576px) {
-}
-@media (min-width: 768px) {
-}
-@media (min-width: 992px) {
-}
-
-@media (min-width: 1200px) {
+.tableContainer td {
+  padding: 4px;
+  font-size: 14px;
 }

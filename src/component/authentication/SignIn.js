@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import SignInSuccess from "../authentication/SignInSuccess";
+import SignInSuccess from "./SignInSuccess";
 import { firebaseAuth, userNameDbRef } from "../../firebase";
 import {
   createUserWithEmailAndPassword,
@@ -19,6 +19,7 @@ const SignIn = (props) => {
   const [signState, setSignState] = useState(false);
   const [signInError, setSignInError] = useState(false);
   const nav = useNavigate();
+
 
   const checkUserName = () => {
     const names = [];
@@ -45,17 +46,8 @@ const SignIn = (props) => {
       .catch((error) => console.log(error));
   };
 
-  useEffect(() => {
-    const checkLogin = onAuthStateChanged(firebaseAuth, (user) => {
-      if (user) {
-        nav("/");
-      } else {
-        setContent(true);
-      }
-    });
 
-    return () => checkLogin();
-  }, [nav]);
+
   const userDataSubmit = async (event) => {
     event.preventDefault();
 
@@ -68,10 +60,12 @@ const SignIn = (props) => {
         updateProfile(firebaseAuth.currentUser, {
           displayName: enterNickName.current.value,
         });
+        signOut(firebaseAuth);
+
       })
       .then(() => {
-        signOut(firebaseAuth);
         setSignState(true);
+        setContent(false)
       }).then(()=>{
         push(userNameDbRef, {
           name:enterNickName.current.value,
@@ -81,6 +75,18 @@ const SignIn = (props) => {
         console.log(error);
       });
   };
+
+  useEffect(() => {
+    const checkLogin = onAuthStateChanged(firebaseAuth, (user) => {
+      if (user) {
+        nav("/");
+      } else {
+        setContent(true);
+      }
+    });
+
+    return () => checkLogin();
+  }, [nav]);
 
   return (
     <>

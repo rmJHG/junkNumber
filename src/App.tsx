@@ -5,8 +5,8 @@ import Layout from "./component/layout/Layout";
 import MainPage from "./component/pages/MainPage";
 import Community from "./component/pages/Community";
 import ReportJunk from "./component/pages/ReportJunk";
-import Login from "./component/pages/Login";
-import SignIn from "./component/pages/SignIn";
+import Login from "./component/authentication/Login";
+import SignIn from "./component/authentication/SignIn";
 import SearchResult from "./component/search/SearchResult";
 import PostDetail from "./component/community/PostDetail";
 
