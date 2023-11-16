@@ -50,7 +50,7 @@ const SearchBar = () => {
           </select>
 
           <input
-            type="text"
+            type="number"
             placeholder="전화번호"
             onChange={handleChange}
             required

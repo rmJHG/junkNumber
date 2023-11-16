@@ -6,7 +6,7 @@ import Loading from "../loading/Loading";
 const DataContext = createContext({
   junkData: [],
   postData: [],
-  refrashFn: () => {},
+  refreshFn: () => {},
 });
 
 export const DataProvider = (props) => {
@@ -32,7 +32,6 @@ export const DataProvider = (props) => {
           }
           setJunkData(numbers.reverse());
         } else {
-          console.log("no data");
         }
       })
       .catch((error) => console.log(error))
@@ -52,7 +51,6 @@ export const DataProvider = (props) => {
         }
         setPostData(posts);
       } else {
-        console.log("no data");
       }
     });
   }, [refresh]);

@@ -18,7 +18,7 @@ const RealTimeJunkList = ({ junk }) => {
         <table className={classes.tableContainer}>
           <colgroup>
             <col width="40%" />
-            <col width="20%" />
+            <col width="40%" />
             <col width="20%" />
           </colgroup>
           <thead className={classes.tableInfoContainer}>

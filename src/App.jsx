@@ -20,7 +20,7 @@ const App = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/create" element={<SignIn />} />
         <Route path="/num/:searchQuery" element={<SearchResult />} />
-        <Route path="/community/post/:postQuery" element={<PostDetail/>}/>
+        <Route path="/community/post/:postQuery" element={<PostDetail />} />
       </Routes>
     </Layout>
   );

@@ -46,7 +46,7 @@ const Login = () => {
             <div className={classes.inputContainer}>
               <div className={classes.emailContainer}>
                 <label htmlFor="email">email :</label>
-                <input type="text" ref={enterEmail} />
+                <input type="email" ref={enterEmail} />
               </div>
 
               <div className={classes.passwordContainer}>

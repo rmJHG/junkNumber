@@ -1,3 +1,7 @@
+.container {
+  padding: 10% 0;
+}
+
 .searchBox {
   display: flex;
   justify-content: center;
@@ -28,19 +32,10 @@ button {
 }
 
 @media (max-width: 576px) {
-  .container {
-    padding: 10% 0;
-  }
 }
 @media (min-width: 576px) and (max-width: 767px) {
-  .container {
-    padding: 10% 0;
-  }
 }
 @media (min-width: 768px) and (max-width: 991px) {
-  .container {
-    padding: 10% 0;
-  }
 }
 @media (min-width: 992px) and (max-width: 1199px) {
   .container {
@@ -49,11 +44,8 @@ button {
 }
 
 @media (min-width: 1200px) {
-  .container {
-    padding: 10% 0;
-  }
   .searchBox {
-    padding: 0 25rem;
+    padding: 0 10rem;
   }
   .searchBox > input {
     width: 500px;
