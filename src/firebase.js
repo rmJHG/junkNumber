@@ -24,6 +24,5 @@ export const firebaseDb = getDatabase(firebaseApp);
 export const dbRef = ref(firebaseDb, "/numbers");
 export const userNameDbRef = ref(firebaseDb, "/userName");
 export const postDbRef = ref(firebaseDb, "/posts");
-
 //로그인 유지관리(웹 종료시 기록삭제)
 setPersistence(firebaseAuth, browserSessionPersistence);

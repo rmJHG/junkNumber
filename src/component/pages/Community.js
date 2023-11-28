@@ -5,6 +5,8 @@ import classes from "./style/community.module.css";
 import { useParams } from "react-router-dom";
 import Loading from "../loading/Loading";
 import PageNav from "../community/PageNav";
+import { postDbRef } from "../../firebase";
+import { push } from "firebase/database";
 
 const Community = () => {
   const [dataState, setDataState] = useState(false);
@@ -23,7 +25,13 @@ const Community = () => {
     .sort((a, b) => {
       return b.index - a.index;
     });
-
+  const addPost = () => {
+    push(postDbRef, {
+      writer: "tester",
+      content: "test",
+      title: "hello world222",
+    });
+  };
   const chunk = (data = [], size = 1) => {
     const arr = [];
 
@@ -68,25 +76,23 @@ const Community = () => {
             <tbody className={classes.tableDataContainer}>
               {chunkedData[params.commuQuery - 1].map((data) => {
                 return (
-                  <Post
-                    key={data.id}
-                    id={data.id}
-                    index={data.index}
-                    title={data.title}
-                    writer={data.writer}
-                    postMS={data.postMS}
-                    postDate={data.postDate}
-                  />
+                  <Post key={data.id} id={data.id} index={data.index} title={data.title} writer={data.writer} postMS={data.postMS} postDate={data.postDate} />
                 );
               })}
             </tbody>
           </table>
         </div>
         <PageNav />
+        <button onClick={addPost}>hello</button>
+
       </div>
     );
   } else {
-    return <Loading />;
+    return (
+      <>
+        <Loading />
+      </>
+    );
   }
 };
 

@@ -4,13 +4,17 @@ import "./index.css";
 import App from "./App";
 import { BrowserRouter } from "react-router-dom";
 import { DataProvider } from "./component/context/DataContext";
-const root = ReactDOM.createRoot(
-  document.getElementById("root")
-) as HTMLElement;
+import { RecoilRoot } from "recoil";
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
+
+
 root.render(
   <BrowserRouter>
-    <DataProvider>
-      <App />
-    </DataProvider>
+    <RecoilRoot>
+      <DataProvider>
+        <App />
+      </DataProvider>
+    </RecoilRoot>
   </BrowserRouter>
 );

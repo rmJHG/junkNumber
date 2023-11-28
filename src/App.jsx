@@ -9,6 +9,7 @@ import Login from "./component/authentication/Login";
 import SignIn from "./component/authentication/SignIn";
 import SearchResult from "./component/search/SearchResult";
 import PostDetail from "./component/community/PostDetail";
+import PostUpdate from "./component/community/PostUpdate";
 
 const App = () => {
   return (
@@ -21,6 +22,7 @@ const App = () => {
         <Route path="/create" element={<SignIn />} />
         <Route path="/num/:searchQuery" element={<SearchResult />} />
         <Route path="/community/post/:postQuery" element={<PostDetail />} />
+        <Route path="/community/post/edit" element={<PostUpdate />} />
       </Routes>
     </Layout>
   );

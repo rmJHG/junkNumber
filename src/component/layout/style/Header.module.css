@@ -53,7 +53,7 @@
   position: relative;
 }
 .menu {
-  top: 5%;
+  top: 35px;
   border-radius: 10px;
   position: fixed;
   left: calc(100% - 5rem);
