@@ -5,6 +5,7 @@ import { onAuthStateChanged } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import classes from "./style/ReportJunk.module.css";
 import JunkNumContext from "../context/DataContext";
+import LoginRequired from "../authentication/LoginRequired";
 
 const ReportJunk = () => {
   const context = useContext(JunkNumContext);
@@ -26,9 +27,7 @@ const ReportJunk = () => {
 
     enterLastNumRef.current.value = number;
   };
-  const loginNavBtn = () => {
-    nav("/login");
-  };
+
   const addData = async (e) => {
     e.preventDefault();
     const enteredFirstNum = enterFirstNumRef.current.value;
@@ -140,10 +139,7 @@ const ReportJunk = () => {
           </div>
         </form>
       ) : (
-        <div className={classes.empty}>
-          <p>로그인이 필요한 서비스입니다.</p>
-          <input type="button" value="로그인" onClick={loginNavBtn} />
-        </div>
+<LoginRequired/>
       )}
     </div>
   );

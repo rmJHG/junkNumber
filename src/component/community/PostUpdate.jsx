@@ -63,6 +63,8 @@ const Wrapper = styled.div`
 const Container = styled.div`
   width: 500px;
   height: 500px;
+  margin-top: 3rem;
+
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -71,7 +73,7 @@ const Container = styled.div`
 
 const TitleContainer = styled.div`
   width: 100%;
-  margin:0.5rem 0;
+  margin: 0.5rem 0;
   text-align: center;
 
   input {
@@ -83,7 +85,7 @@ const TitleContainer = styled.div`
 const ContentContainer = styled.div`
   width: 100%;
   text-align: center;
-  margin-bottom:0.5rem;
+  margin-bottom: 0.5rem;
   textarea {
     padding: 0.5rem;
     width: 90%;
@@ -97,9 +99,8 @@ const BtnContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  button{
-    margin:0 0.3rem;
-    padding:0.5rem 1rem;
+  button {
+    margin: 0 0.3rem;
+    padding: 0.5rem 1rem;
   }
 `;
-const Label = styled.label``;

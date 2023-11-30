@@ -2,15 +2,14 @@ import React, { useContext, useEffect, useState } from "react";
 import DataContext from "../context/DataContext";
 import Post from "../community/Post";
 import classes from "./style/community.module.css";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Loading from "../loading/Loading";
 import PageNav from "../community/PageNav";
-import { postDbRef } from "../../firebase";
-import { push } from "firebase/database";
+import styled from "styled-components";
 
 const Community = () => {
+  const nav = useNavigate();
   const [dataState, setDataState] = useState(false);
-
   const context = useContext(DataContext);
   const params = useParams();
   const postData = context.postData;
@@ -25,13 +24,7 @@ const Community = () => {
     .sort((a, b) => {
       return b.index - a.index;
     });
-  const addPost = () => {
-    push(postDbRef, {
-      writer: "tester",
-      content: "test",
-      title: "hello world222",
-    });
-  };
+
   const chunk = (data = [], size = 1) => {
     const arr = [];
 
@@ -60,7 +53,7 @@ const Community = () => {
         <div className={classes.tableContainer}>
           <table>
             <colgroup>
-              <col width="8%" />
+              <col width="13%" />
               <col width="50%" />
               <col width="17%" />
               <col width="20%" />
@@ -82,9 +75,17 @@ const Community = () => {
             </tbody>
           </table>
         </div>
-        <PageNav />
-        <button onClick={addPost}>hello</button>
 
+        <BtnWrapper>
+          <button
+            onClick={() => {
+              nav("/community/write");
+            }}
+          >
+            글쓰기
+          </button>
+        </BtnWrapper>
+        <PageNav />
       </div>
     );
   } else {
@@ -97,3 +98,15 @@ const Community = () => {
 };
 
 export default Community;
+
+const BtnWrapper = styled.div`
+  width: 100%;
+  margin-top: 0.3rem;
+  display: flex;
+  justify-content: flex-end;
+  button {
+    border: 1px solid #ccc;
+    padding: 0.5rem 0.7rem;
+    background-color: white;
+  }
+`;

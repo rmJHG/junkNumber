@@ -6,7 +6,7 @@ import styled from "styled-components";
 import { onAuthStateChanged } from "firebase/auth";
 import { firebaseAuth, firebaseDb } from "../../firebase";
 import { ref, remove } from "firebase/database";
-import { useRecoilState } from "recoil";
+import { useSetRecoilState } from "recoil";
 import { contentData, keyData, titleData } from "../store/PostData";
 
 const PostDetail = () => {
@@ -18,9 +18,9 @@ const PostDetail = () => {
   const msToTime = (ms) => {
     return new Date(ms).toLocaleTimeString();
   };
-  const [titleState, setTitleState] = useRecoilState(titleData);
-  const [contentState, setContentState] = useRecoilState(contentData);
-  const [keyState, setKeyState] = useRecoilState(keyData);
+  const setTitleState = useSetRecoilState(titleData);
+  const setContentState = useSetRecoilState(contentData);
+  const setKeyState = useSetRecoilState(keyData);
 
   //데이터가 없을 경우 로딩창을 출력, 있을 경우 정상적인 게시글 출력
   if (data[params.postQuery - 1] !== undefined) {
@@ -32,9 +32,9 @@ const PostDetail = () => {
     const getRef = ref(firebaseDb, `/posts/${id}`);
 
     const updateBtnHandler = () => {
-      setTitleState(title);
-      setContentState(content);
-      setKeyState(id);
+      setTitleState((res) => (res = title));
+      setContentState((res) => (res = content));
+      setKeyState((res) => (res = id));
       nav("/community/post/edit");
     };
 

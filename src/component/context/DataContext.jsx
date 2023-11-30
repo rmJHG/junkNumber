@@ -69,9 +69,7 @@ export const DataProvider = (props) => {
     return <Loading />;
   }
 
-  return (
-    <DataContext.Provider value={data}>{props.children}</DataContext.Provider>
-  );
+  return <DataContext.Provider value={data}>{props.children}</DataContext.Provider>;
 };
 
 export default DataContext;

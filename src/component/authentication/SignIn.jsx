@@ -1,15 +1,10 @@
 import React, { useEffect, useRef, useState } from "react";
 import SignInSuccess from "./SignInSuccess";
 import { firebaseAuth, userNameDbRef } from "../../firebase";
-import {
-  createUserWithEmailAndPassword,
-  updateProfile,
-  signOut,
-  onAuthStateChanged,
-} from "firebase/auth";
+import { createUserWithEmailAndPassword, updateProfile, signOut, onAuthStateChanged } from "firebase/auth";
 import { child, get, push } from "firebase/database";
 import { useNavigate } from "react-router-dom";
-import classes from "./style/SignIn.module.css";
+import styled from "styled-components";
 
 const SignIn = (props) => {
   const enterUserEmail = useRef();
@@ -19,7 +14,6 @@ const SignIn = (props) => {
   const [signState, setSignState] = useState(false);
   const [signInError, setSignInError] = useState(false);
   const nav = useNavigate();
-
 
   const checkUserName = () => {
     const names = [];
@@ -46,30 +40,24 @@ const SignIn = (props) => {
       .catch((error) => console.log(error));
   };
 
-
-
   const userDataSubmit = async (event) => {
     event.preventDefault();
 
-    await createUserWithEmailAndPassword(
-      firebaseAuth,
-      enterUserEmail.current.value,
-      enterUserPassword.current.value
-    )
+    await createUserWithEmailAndPassword(firebaseAuth, enterUserEmail.current.value, enterUserPassword.current.value)
       .then((result) => {
         updateProfile(firebaseAuth.currentUser, {
           displayName: enterNickName.current.value,
         });
         signOut(firebaseAuth);
-
       })
       .then(() => {
         setSignState(true);
-        setContent(false)
-      }).then(()=>{
+        setContent(false);
+      })
+      .then(() => {
         push(userNameDbRef, {
-          name:enterNickName.current.value,
-        })
+          name: enterNickName.current.value,
+        });
       })
       .catch((error) => {
         console.log(error);
@@ -91,9 +79,9 @@ const SignIn = (props) => {
   return (
     <>
       {content && (
-        <div className={classes.container}>
+        <Wrapper>
           <form onSubmit={userDataSubmit}>
-            <div className={classes.inputContainer}>
+            <InputContainer>
               <div>
                 <label htmlFor="userEmail">EMAIL</label>
                 <input type="email" id="userEmail" ref={enterUserEmail} />
@@ -102,28 +90,22 @@ const SignIn = (props) => {
                 <label htmlFor="dd">PASSWORD</label>
                 <input type="password" id="dd" ref={enterUserPassword} />
               </div>
+
               <div>
                 <label htmlFor="userName">USER NAME</label>
-                <input
-                  type="text"
-                  ref={enterNickName}
-                  onChange={checkUserName}
-                  minLength={3}
-                  maxLength={8}
-                />
-                <div className={classes.userNameInfoContainer}>
+                <input type="text" ref={enterNickName} onChange={checkUserName} minLength={3} maxLength={8} />
+                <AlertContainer>
                   <p>닉네임은 3~8글자만 가능합니다</p>
-                {signInError && <p>사용할 수 없는 닉네임입니다.</p>}
-                </div>
+                  {signInError && <p>사용할 수 없는 닉네임입니다.</p>}
+                </AlertContainer>
               </div>
-            </div>
+            </InputContainer>
 
-            <div className={classes.btnContainer}>
+            <BtnWrapper>
               <button>가입</button>
-            </div>
+            </BtnWrapper>
           </form>
-
-        </div>
+        </Wrapper>
       )}
       {signState && <SignInSuccess />}
     </>
@@ -131,3 +113,62 @@ const SignIn = (props) => {
 };
 
 export default SignIn;
+const Wrapper = styled.div`
+  width: 100%;
+  height: 100%;
+  padding: 2rem;
+  display: flex;
+  justify-content: center;
+
+  form {
+    width: 500px;
+    height: 100%;
+    margin-top: 5rem;
+    border: 1px solid #ccc;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: #fff;
+  }
+`;
+const InputContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  div:nth-child(2),
+  div:last-child {
+    margin-top: 1rem;
+  }
+  div > input {
+    width: 100%;
+    margin-top: 0.5rem;
+    padding: 0.5rem;
+    background-color: #f8f8f8;
+    box-sizing: border-box;
+    border-radius: 3rem;
+  }
+`;
+
+const AlertContainer = styled.div`
+  margin-top: 0.3rem;
+  display: flex;
+  justify-content: space-between;
+  p:nth-child(2) {
+    color: red;
+  }
+`;
+
+const BtnWrapper = styled.div`
+  width: 100%;
+  height: 2rem;
+  margin-top: 3rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  button {
+    border-radius: 30rem;
+    padding: 0.5rem 0.7rem;
+    font-size: 1rem;
+  }
+`;

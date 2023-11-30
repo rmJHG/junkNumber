@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import DataContext from "../context/DataContext";
 import { Link, useParams } from "react-router-dom";
-import classes from "./style/PageNav.module.css";
+import styled from "styled-components";
 
 const PageNav = () => {
   const context = useContext(DataContext);
@@ -26,70 +26,90 @@ const PageNav = () => {
   useEffect(() => {
     // 이전 페이지 이동 버튼
     params.commuQuery > 10 && setPreviousPageBtnState(true);
-    params.commuQuery > 10
-      ? setPreviousPageAdressState(
-          Math.floor((params.commuQuery - 1) / 10) * 10
-        )
-      : setPreviousPageBtnState(false);
+    params.commuQuery > 10 ? setPreviousPageAdressState(Math.floor((params.commuQuery - 1) / 10) * 10) : setPreviousPageBtnState(false);
     //다음 페이지 이동 버튼F
-    Math.floor((params.commuQuery - 1) / 10) * 10 + 10 < chunkedData.length &&
-      setNextPageBtnState(true);
+    Math.floor((params.commuQuery - 1) / 10) * 10 + 10 < chunkedData.length && setNextPageBtnState(true);
     Math.floor((params.commuQuery - 1) / 10) * 10 + 10 < chunkedData.length
-      ? setNextPageAdressState(
-          Math.floor((params.commuQuery - 1) / 10) * 10 + 11
-        )
+      ? setNextPageAdressState(Math.floor((params.commuQuery - 1) / 10) * 10 + 11)
       : setNextPageBtnState(false);
   }, [params.commuQuery, chunkedData.length]);
   //페이지 네이게이션
-  const links = Array.from(
-    chunkedData.slice(
-      Math.floor((params.commuQuery - 1) / 10) * 10,
-      Math.floor((params.commuQuery - 1) / 10) * 10 + 10
-    ),
-    (_, i) => (
-      <td key={i} align="center" className={classes.pageNav}>
-        <Link
-          to={`/community/${
-            i + Math.floor((params.commuQuery - 1) / 10) * 10 + 1
-          }`}
-        >
-          <p>{i + Math.floor((params.commuQuery - 1) / 10) * 10 + 1}</p>
-        </Link>
-      </td>
-    )
-  );
+  const links = Array.from(chunkedData.slice(Math.floor((params.commuQuery - 1) / 10) * 10, Math.floor((params.commuQuery - 1) / 10) * 10 + 10), (_, i) => (
+    <PageNavigation key={i} align="center">
+      <Link to={`/community/${i + Math.floor((params.commuQuery - 1) / 10) * 10 + 1}`}>
+        <p>{i + Math.floor((params.commuQuery - 1) / 10) * 10 + 1}</p>
+      </Link>
+    </PageNavigation>
+  ));
 
   return (
-    <div className={classes.pageNavContainer}>
+    <Wrapper>
       <table>
         <tbody>
           <tr align="center" width="5%">
-            <td className={classes.btnTd}>
+            <td>
               {previusPageBtnState ? (
                 <Link to={`/community/${previousPageAdressState}`}>
-                  <p className={classes.btnText}>&lt;이전</p>
+                  <BtnText>&lt;이전</BtnText>
                 </Link>
               ) : (
-                <p className={classes.disableBtnText}>&lt;이전</p>
+                <DisableBtnText>&lt;이전</DisableBtnText>
               )}
             </td>
 
             {links}
 
-            <td className={classes.btnTd}>
+            <td>
               {nextPageBtnState ? (
                 <Link to={`/community/${nextPageAdressState}`}>
-                  <p className={classes.btnText}>다음&gt;</p>
+                  <BtnText>다음&gt;</BtnText>
                 </Link>
               ) : (
-                <p className={classes.disableBtnText}>다음&gt;</p>
+                <DisableBtnText>다음&gt;</DisableBtnText>
               )}
             </td>
           </tr>
         </tbody>
       </table>
-    </div>
+    </Wrapper>
   );
 };
 
 export default PageNav;
+
+const Wrapper = styled.div`
+  width: 100%;
+  height: 100%;
+  margin: 1rem 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  table {
+    width: 280px;
+    height: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+`;
+
+const PageNavigation = styled.td`
+  width: 100%;
+  padding: 0 0.3rem;
+  box-sizing: border-box;
+  a > p {
+    width: 1rem;
+    font-size: 15px;
+  }
+`;
+
+const BtnText = styled.p`
+  width: 2.5rem;
+  font-size: 100%;
+`;
+const DisableBtnText = styled.p`
+  color: gray;
+  width: 2.5rem;
+  font-size: 100%;
+`;
