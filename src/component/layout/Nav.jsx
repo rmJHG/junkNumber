@@ -1,11 +1,11 @@
 import { Link } from "react-router-dom";
-import classes from "./style/Nav.module.css";
+import styled from "styled-components";
 
 const Nav = (props) => {
   return (
     <section>
-      <nav>
-        <ul className={classes.navList}>
+      <nav style={{ background: "#d3d3d3" }}>
+        <NavList>
           <li>
             <Link to="/">메인</Link>
           </li>
@@ -15,10 +15,27 @@ const Nav = (props) => {
           <li>
             <Link to="/report">피싱번호추가</Link>
           </li>
-        </ul>
+        </NavList>
       </nav>
     </section>
   );
 };
 
 export default Nav;
+
+const NavList = styled.ul`
+  height: 1.5rem;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  li {
+    width: 25%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  a {
+    color: #333333;
+  }
+`;

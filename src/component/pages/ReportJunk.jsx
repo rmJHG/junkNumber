@@ -3,9 +3,9 @@ import { dbRef, firebaseAuth } from "../../firebase";
 import { push } from "firebase/database";
 import { onAuthStateChanged } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
-import classes from "./style/ReportJunk.module.css";
 import JunkNumContext from "../context/DataContext";
 import LoginRequired from "../authentication/LoginRequired";
+import styled from "styled-components";
 
 const ReportJunk = () => {
   const context = useContext(JunkNumContext);
@@ -21,9 +21,7 @@ const ReportJunk = () => {
   const enterJunkComent = useRef();
   const enterDetail = useRef();
   const handleLastNumInput = (e) => {
-    const number = e.target.value
-      .replace(/[^0-9]/g, "")
-      .replace(/^(\d{3,4})(\d{4})/, "$1-$2");
+    const number = e.target.value.replace(/[^0-9]/g, "").replace(/^(\d{3,4})(\d{4})/, "$1-$2");
 
     enterLastNumRef.current.value = number;
   };
@@ -38,9 +36,7 @@ const ReportJunk = () => {
     let year = today.getFullYear();
     let month = "00" + (today.getMonth() + 1);
     let day = "00" + today.getDate();
-    const date = `${year}/${month.toString().slice(-2)}/${day
-      .toString()
-      .slice(-2)}`;
+    const date = `${year}/${month.toString().slice(-2)}/${day.toString().slice(-2)}`;
 
     if (enteredLastNum.length < 8) {
       setCheckNum(false);
@@ -78,10 +74,10 @@ const ReportJunk = () => {
   }, []);
 
   return (
-    <div className={classes.container}>
+    <Container>
       {content ? (
-        <form onSubmit={addData} className={classes.reportForm}>
-          <div className={classes.numberContainer}>
+        <ReportForm onSubmit={addData}>
+          <NumberContainer>
             <select ref={enterDetail}>
               <option value="문자광고">문자광고</option>
               <option value="휴대폰광고">휴대폰광고</option>
@@ -109,40 +105,103 @@ const ReportJunk = () => {
               <option value="010">010</option>
               <option value="070">070</option>
             </select>
-            <input
-              type="text"
-              required
-              maxLength={9}
-              ref={enterLastNumRef}
-              onChange={handleLastNumInput}
-            />
-          </div>
+            <input type="text" required maxLength={9} ref={enterLastNumRef} onChange={handleLastNumInput} />
+          </NumberContainer>
 
-          <div className={classes.notificationContainer}>
+          <TextComentWrapper>
+            <CommentBox onChange={onTextareaHandler} rows={20} maxLength={60} ref={enterJunkComent} placeholder="상세 설명"></CommentBox>
+          </TextComentWrapper>
+
+          <NotificationContainer>
             {checkNum ? <p></p> : <p>올바른 형식의 번호가 아닙니다.</p>}
             <p>{`${textCount}/ 60`}</p>
-          </div>
-
-          <div className={classes.textInfoContainer}>
-            <textarea
-              className={classes.comment}
-              onChange={onTextareaHandler}
-              rows={20}
-              maxLength={60}
-              ref={enterJunkComent}
-              placeholder="상세 설명"
-            ></textarea>
-          </div>
-
-          <div className={classes.btnContainer}>
+          </NotificationContainer>
+          <BtnWrapper>
             <button>신고</button>
-          </div>
-        </form>
+          </BtnWrapper>
+        </ReportForm>
       ) : (
-<LoginRequired/>
+        <LoginRequired />
       )}
-    </div>
+    </Container>
   );
 };
 
 export default ReportJunk;
+
+const Container = styled.div`
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+`;
+
+const ReportForm = styled.form`
+  width: 500px;
+  height: 100%;
+  margin-top: 5rem;
+  border: 1px solid #ccc;
+  padding: 3rem 2rem 2rem 2rem;
+  background-color: #fff;
+
+  &:first-child {
+    justify-content: left;
+  }
+`;
+
+const NumberContainer = styled.div`
+  width: 100%;
+  margin-bottom: 1rem;
+  border: 1px solid #ccc;
+  select,
+  input {
+    border: none;
+    padding: 5px 10px;
+  }
+  select {
+    width: 25%;
+    padding-left: 1rem;
+  }
+  select:nth-child(2) {
+    padding-left: 1.5rem;
+    width: 15%;
+  }
+  input {
+    box-sizing: border-box;
+    padding-left: 1.5rem;
+    width: 50%;
+  }
+`;
+
+const NotificationContainer = styled.div`
+  margin-bottom: 0.3rem;
+  display: flex;
+  justify-content: space-between;
+  p:first-child {
+    color: red;
+  }
+`;
+
+const TextComentWrapper = styled.div`
+  width: 100%;
+`;
+
+const CommentBox = styled.textarea`
+  width: 100%;
+  height: 200px;
+  margin-top: 0.5rem;
+  border: 1px solid #ccc;
+  padding: 0.5rem;
+  resize: none;
+  box-sizing: border-box;
+`;
+
+const BtnWrapper = styled.div`
+  width: 100%;
+  margin-top: 1rem;
+  button {
+    width: 100%;
+    height: 3rem;
+    border-radius: 10px;
+  }
+`;

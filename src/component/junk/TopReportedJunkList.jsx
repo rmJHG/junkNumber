@@ -80,9 +80,6 @@ const Table = styled.table`
 const TableHead = styled.thead`
   background-color: #f9f6f0;
   border-bottom: 1px solid #ccc;
-  tr {
-    /* border-bottom: 1px solid #ccc; */
-  }
 `;
 
 const TableList = styled.tbody`

@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import DataContext from "../context/DataContext";
 import Post from "../community/Post";
-import classes from "./style/community.module.css";
 import { useNavigate, useParams } from "react-router-dom";
 import Loading from "../loading/Loading";
 import PageNav from "../community/PageNav";
@@ -43,14 +42,14 @@ const Community = () => {
 
   if (dataState) {
     return (
-      <div className={classes.container}>
-        <header className={classes.headerContainer}>
+      <Container>
+        <HeaderWrapper>
           <div>
             <p>hello world !</p>
           </div>
-        </header>
+        </HeaderWrapper>
 
-        <div className={classes.tableContainer}>
+        <TableWrapper>
           <table>
             <colgroup>
               <col width="13%" />
@@ -58,23 +57,23 @@ const Community = () => {
               <col width="17%" />
               <col width="20%" />
             </colgroup>
-            <thead className={classes.tableInfoContainer}>
+            <TableHead>
               <tr>
                 <td align="center">No</td>
                 <td>제목</td>
                 <td align="center">작성자</td>
                 <td align="center">작성일</td>
               </tr>
-            </thead>
-            <tbody className={classes.tableDataContainer}>
+            </TableHead>
+            <TableListContainer>
               {chunkedData[params.commuQuery - 1].map((data) => {
                 return (
                   <Post key={data.id} id={data.id} index={data.index} title={data.title} writer={data.writer} postMS={data.postMS} postDate={data.postDate} />
                 );
               })}
-            </tbody>
+            </TableListContainer>
           </table>
-        </div>
+        </TableWrapper>
 
         <BtnWrapper>
           <button
@@ -86,7 +85,7 @@ const Community = () => {
           </button>
         </BtnWrapper>
         <PageNav />
-      </div>
+      </Container>
     );
   } else {
     return (
@@ -99,6 +98,81 @@ const Community = () => {
 
 export default Community;
 
+const Container = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  @media (max-width: 576px) {
+    padding: 0;
+  }
+  @media (min-width: 576px) and (max-width: 767px) {
+    padding: 0;
+  }
+  @media (min-width: 768px) and (max-width: 991px) {
+    padding: 0 5%;
+  }
+
+  @media (min-width: 992px) and (max-width: 1199px) {
+    padding: 0 8%;
+  }
+
+  @media (min-width: 1200px) {
+    padding: 0 15%;
+  }
+`;
+const HeaderWrapper = styled.header`
+  width: 100%;
+  height: 2rem;
+  margin-top: 2rem;
+  padding: 1.5rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #004080;
+  color: white;
+  font-family: Ramche;
+`;
+const TableWrapper = styled.div`
+  width: 100%;
+  height: 100%;
+  border-top: 1px solid #ccc;
+  background-color: white;
+
+  table {
+    width: 100%;
+    height: 100%;
+  }
+
+  td {
+    padding: 4px;
+    font-size: 14px;
+  }
+`;
+const TableHead = styled.thead`
+  border-bottom: 1px solid #ccc;
+  tr > td {
+    padding: 0.6rem;
+  }
+`;
+
+const TableListContainer = styled.tbody`
+  &:hover {
+    background-color: #ccc;
+  }
+  tr {
+    border-bottom: 1px solid #ccc;
+  }
+  tr > td {
+    padding: 0.5rem;
+  }
+  tr > td:nth-child(2):hover {
+    cursor: pointer;
+  }
+`;
 const BtnWrapper = styled.div`
   width: 100%;
   margin-top: 0.3rem;
