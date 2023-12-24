@@ -1,5 +1,4 @@
 import React from "react";
-import "./App.css";
 import { Routes, Route } from "react-router-dom";
 import Layout from "./component/layout/Layout";
 import MainPage from "./component/pages/MainPage";
@@ -11,6 +10,7 @@ import SearchResult from "./component/search/SearchResult";
 import PostDetail from "./component/community/PostDetail";
 import PostUpdate from "./component/community/PostUpdate";
 import WritePost from "./component/community/WritePost";
+import SignInSuccess from "./component/authentication/SignInSuccess";
 
 const App = () => {
   return (
@@ -21,6 +21,7 @@ const App = () => {
         <Route path="/report" element={<ReportJunk />} />
         <Route path="/login" element={<Login />} />
         <Route path="/create" element={<SignIn />} />
+        <Route path="/sucess" element={<SignInSuccess/>} />
         <Route path="/num/:searchQuery" element={<SearchResult />} />
         <Route path="/community/post/:postQuery" element={<PostDetail />} />
         <Route path="/community/post/edit" element={<PostUpdate />} />

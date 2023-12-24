@@ -15,7 +15,7 @@ const ReportJunk = () => {
   const [checkNum, setCheckNum] = useState(true);
   const [textCount, setTextCount] = useState(0);
   const userNameRef = useRef(null);
-
+  const userUid = useRef(null);
   const enterFirstNumRef = useRef();
   const enterLastNumRef = useRef();
   const enterJunkComent = useRef();
@@ -62,6 +62,7 @@ const ReportJunk = () => {
     const fetchData = onAuthStateChanged(firebaseAuth, (user) => {
       if (user) {
         userNameRef.current = user.displayName;
+        userUid.current = user.uid;
         setContent(true);
       } else {
         setContent(false);

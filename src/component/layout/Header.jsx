@@ -10,7 +10,7 @@ const Header = () => {
   const [loading, setLoading] = useState(true);
   const [isOpen, setIsOpen] = useState(false);
   const nav = useNavigate();
-  const titleCLickEvent = () => {
+  const titleClickEvent = () => {
     nav("/");
   };
   const modalHandler = () => {
@@ -42,12 +42,13 @@ const Header = () => {
       {isOpen && (
         <Menu onClick={modalHandler}>
           <li>
+            <Link to="/community/write">글쓰기</Link>
             <p onClick={logOutBtnClick}>로그아웃</p>
           </li>
         </Menu>
       )}
       <HeaderContent>
-        <TitleWrapper onClick={titleCLickEvent}>
+        <TitleWrapper onClick={titleClickEvent}>
           <p>JunkNumber</p>
         </TitleWrapper>
         {loading ? (
@@ -59,7 +60,7 @@ const Header = () => {
           </UserInfoContainer>
         ) : (
           <LoginBtnWrapper>
-            <Link to="/Login">
+            <Link to="/login">
               <p>로그인</p>
             </Link>
           </LoginBtnWrapper>
@@ -135,12 +136,16 @@ const Menu = styled.ul`
     width: 100%;
     padding: 0.3rem;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
   }
-  li > p {
+  li > p,
+  a {
     width: 100%;
     padding: 0.5rem;
+    font-size: 13px;
+    color: white;
     font-family: "Courier New", Courier, monospace;
   }
 `;

@@ -76,7 +76,7 @@ const SearchForm = styled.form`
   }
   button {
     width: 15%;
-    border-radius: 0 10px 10px 0;
+    border-radius: 0 5px 5px 0;
     background-color: #004080;
     color: white;
   }

@@ -24,6 +24,7 @@ const Container = styled.div`
 const MainSection = styled.section`
   min-width: 100%;
   min-height: calc(100% - 7.5rem);
+  max-height: 100%;
   margin: 0 auto;
   padding: auto;
   @media (max-width: 576px) {

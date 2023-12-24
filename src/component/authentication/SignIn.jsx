@@ -1,5 +1,4 @@
 import React, { useEffect, useRef, useState } from "react";
-import SignInSuccess from "./SignInSuccess";
 import { firebaseAuth, userNameDbRef } from "../../firebase";
 import { createUserWithEmailAndPassword, updateProfile, signOut, onAuthStateChanged } from "firebase/auth";
 import { child, get, push } from "firebase/database";
@@ -10,12 +9,12 @@ const SignIn = (props) => {
   const enterUserEmail = useRef();
   const enterUserPassword = useRef();
   const enterNickName = useRef();
-  const [content, setContent] = useState(false);
-  const [signState, setSignState] = useState(false);
   const [signInError, setSignInError] = useState(false);
+  const [emailError, setEmailError] = useState(false);
+  const [passwordError, setPasswordError] = useState(false);
   const nav = useNavigate();
 
-  const checkUserName = () => {
+  const checkNickName = () => {
     const names = [];
     get(child(userNameDbRef, `/`))
       .then((res) => {
@@ -29,7 +28,7 @@ const SignIn = (props) => {
         }
 
         for (let i = 0; i < names.length; i++) {
-          if (enterNickName.current.value === names[i].name) {
+          if (enterNickName.current.value.toLowerCase() === names[i].name) {
             setSignInError(true);
             break;
           } else {
@@ -37,78 +36,83 @@ const SignIn = (props) => {
           }
         }
       })
-      .catch((error) => console.log(error));
+      .catch((error) => console.log(error.code));
   };
 
-  const userDataSubmit = async (event) => {
+  const userDataSubmit = (event) => {
     event.preventDefault();
 
-    await createUserWithEmailAndPassword(firebaseAuth, enterUserEmail.current.value, enterUserPassword.current.value)
+    const enteredNickName = enterNickName.current.value;
+
+    createUserWithEmailAndPassword(firebaseAuth, enterUserEmail.current.value, enterUserPassword.current.value)
+      .then(() => {
+        nav("/sucess");
+      })
       .then((result) => {
         updateProfile(firebaseAuth.currentUser, {
-          displayName: enterNickName.current.value,
+          displayName: enteredNickName,
         });
         signOut(firebaseAuth);
-      })
-      .then(() => {
-        setSignState(true);
-        setContent(false);
-      })
-      .then(() => {
         push(userNameDbRef, {
-          name: enterNickName.current.value,
+          name: enteredNickName.toLowerCase(),
         });
       })
       .catch((error) => {
-        console.log(error);
+        switch (error.code) {
+          case "auth/weak-password":
+            setPasswordError(true);
+            break;
+          case "auth/email-already-in-use":
+            setEmailError(true);
+            break;
+          default:
+            console.log(error.code);
+        }
       });
   };
 
   useEffect(() => {
-    const checkLogin = onAuthStateChanged(firebaseAuth, (user) => {
+    onAuthStateChanged(firebaseAuth, (user) => {
       if (user) {
         nav("/");
-      } else {
-        setContent(true);
       }
     });
-
-    return () => checkLogin();
   }, [nav]);
-
   return (
-    <>
-      {content && (
-        <Wrapper>
-          <form onSubmit={userDataSubmit}>
-            <InputContainer>
-              <div>
-                <label htmlFor="userEmail">EMAIL</label>
-                <input type="email" id="userEmail" ref={enterUserEmail} />
-              </div>
-              <div>
-                <label htmlFor="dd">PASSWORD</label>
-                <input type="password" id="dd" ref={enterUserPassword} />
-              </div>
+    <Wrapper>
+      <form onSubmit={userDataSubmit}>
+        <InputContainer>
+          <div>
+            <label htmlFor="userEmail">EMAIL</label>
+            <input type="email" id="userEmail" ref={enterUserEmail} />
 
-              <div>
-                <label htmlFor="userName">USER NAME</label>
-                <input type="text" ref={enterNickName} onChange={checkUserName} minLength={3} maxLength={8} />
-                <AlertContainer>
-                  <p>닉네임은 3~8글자만 가능합니다</p>
-                  {signInError && <p>사용할 수 없는 닉네임입니다.</p>}
-                </AlertContainer>
-              </div>
-            </InputContainer>
+            <AlertContainer>
+              <p></p> {emailError && <p>사용할 수 없는 이메일입니다.</p>}
+            </AlertContainer>
+          </div>
+          <div>
+            <label htmlFor="password">PASSWORD</label>
+            <input type="password" id="password" ref={enterUserPassword} />
+            <AlertContainer>
+              <p>최소 6자이상만 가능합니다. </p> {passwordError && <p>올바르지 않은 비밀번호 형식입니다.</p>}
+            </AlertContainer>
+          </div>
 
-            <BtnWrapper>
-              <button>가입</button>
-            </BtnWrapper>
-          </form>
-        </Wrapper>
-      )}
-      {signState && <SignInSuccess />}
-    </>
+          <div>
+            <label htmlFor="userName">USER NAME</label>
+            <input type="text" ref={enterNickName} id="userName" onChange={checkNickName} minLength={3} maxLength={8} />
+            <AlertContainer>
+              <p>3~8글자만 가능합니다.</p>
+              {signInError && <p>사용할 수 없는 닉네임입니다.</p>}
+            </AlertContainer>
+          </div>
+        </InputContainer>
+
+        <BtnWrapper>
+          <button>가입</button>
+        </BtnWrapper>
+      </form>
+    </Wrapper>
   );
 };
 

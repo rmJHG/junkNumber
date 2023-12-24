@@ -59,10 +59,10 @@ const Community = () => {
             </colgroup>
             <TableHead>
               <tr>
-                <td align="center">No</td>
+                <td>No</td>
                 <td>제목</td>
-                <td align="center">작성자</td>
-                <td align="center">작성일</td>
+                <td>작성자</td>
+                <td>작성일</td>
               </tr>
             </TableHead>
             <TableListContainer>
@@ -88,11 +88,7 @@ const Community = () => {
       </Container>
     );
   } else {
-    return (
-      <>
-        <Loading />
-      </>
-    );
+    return <Loading />;
   }
 };
 
@@ -156,14 +152,15 @@ const TableHead = styled.thead`
   border-bottom: 1px solid #ccc;
   tr > td {
     padding: 0.6rem;
+    text-align: center;
   }
 `;
 
 const TableListContainer = styled.tbody`
-  &:hover {
-    background-color: #ccc;
-  }
   tr {
+    &:hover {
+      background-color: #ccc;
+    }
     border-bottom: 1px solid #ccc;
   }
   tr > td {

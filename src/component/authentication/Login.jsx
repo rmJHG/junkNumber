@@ -8,19 +8,7 @@ const Login = () => {
   const enterEmail = useRef();
   const enterPassword = useRef();
   const nav = useNavigate();
-  const [content, setContent] = useState(false);
-
-  useEffect(() => {
-    const checkLogin = onAuthStateChanged(firebaseAuth, (user) => {
-      if (user) {
-        nav("/");
-      } else {
-        setContent(true);
-      }
-    });
-
-    return () => checkLogin();
-  }, [nav]);
+  const [ErrorMsg, setErrorMsg] = useState();
 
   const loginSubmit = async (event) => {
     event.preventDefault();
@@ -30,36 +18,52 @@ const Login = () => {
         nav("/");
       })
       .catch((error) => {
-        console.log(error);
+        console.log(error.code);
+        switch (error.code) {
+          case "auth/wrong-password":
+            setErrorMsg("비밀번호가 틀립니다.");
+            break;
+
+          case "auth/user-not-found":
+            setErrorMsg("이메일이 틀립니다.");
+            break;
+
+          default:
+            console.log(error.code);
+        }
       });
   };
-
+  useEffect(() => {
+    onAuthStateChanged(firebaseAuth, (user) => {
+      user && nav("/");
+    });
+  }, [nav]);
   return (
     <Wrapper>
-      {content && (
-        <Container>
-          <form onSubmit={loginSubmit}>
-            <InputContainer>
-              <div>
-                <label htmlFor="email">email :</label>
-                <input type="email" ref={enterEmail} />
-              </div>
+      <Container>
+        <form onSubmit={loginSubmit}>
+          <InputContainer>
+            <div>
+              <label htmlFor="email">email :</label>
+              <input type="email" ref={enterEmail} />
+            </div>
 
-              <div>
-                <label htmlFor="password">password :</label>
-                <input type="password" ref={enterPassword} />
-              </div>
-            </InputContainer>
-
-            <BtnContainer>
-              <button>로그인</button>
-            </BtnContainer>
-          </form>
-          <LinkWrapper>
-            <Link to="/create">회원가입</Link>
-          </LinkWrapper>
-        </Container>
-      )}
+            <div>
+              <label htmlFor="password">password :</label>
+              <input type="password" ref={enterPassword} required />
+            </div>
+          </InputContainer>
+          <LoginError>
+            <p>{ErrorMsg}</p>
+          </LoginError>
+          <BtnContainer>
+            <button>로그인</button>
+          </BtnContainer>
+        </form>
+        <LinkWrapper>
+          <Link to="/create">회원가입</Link>
+        </LinkWrapper>
+      </Container>
     </Wrapper>
   );
 };
@@ -115,4 +119,12 @@ const BtnContainer = styled.div`
 const LinkWrapper = styled.div`
   display: flex;
   justify-content: center;
+`;
+
+const LoginError = styled.div`
+  text-align: center;
+  margin-bottom: 0.2rem;
+  p {
+    color: red;
+  }
 `;

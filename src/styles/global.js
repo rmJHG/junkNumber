@@ -1,3 +1,10 @@
+import { createGlobalStyle } from "styled-components";
+import reset from "styled-reset";
+const GlobalStyles = createGlobalStyle`
+${reset};
+*{
+  box-sizing:border-box;
+}
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding:wght@400;700&display=swap");
 @font-face {
@@ -5,109 +12,6 @@
   src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2307-1@1.1/Ramche.woff2") format("woff2");
   font-weight: normal;
   font-style: normal;
-}
-html,
-body,
-div,
-span,
-applet,
-object,
-iframe,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p,
-blockquote,
-pre,
-a,
-abbr,
-acronym,
-address,
-big,
-cite,
-code,
-del,
-dfn,
-em,
-img,
-ins,
-kbd,
-q,
-s,
-samp,
-small,
-strike,
-strong,
-sub,
-sup,
-tt,
-var,
-b,
-u,
-i,
-center,
-dl,
-dt,
-dd,
-ol,
-ul,
-li,
-fieldset,
-form,
-label,
-legend,
-table,
-caption,
-tbody,
-tfoot,
-thead,
-tr,
-th,
-td,
-article,
-aside,
-canvas,
-details,
-embed,
-figure,
-figcaption,
-footer,
-header,
-hgroup,
-menu,
-nav,
-output,
-ruby,
-section,
-summary,
-time,
-mark,
-audio,
-video {
-  margin: 0;
-  padding: 0;
-  border: 0;
-  font-size: 100%;
-  font: inherit;
-  vertical-align: baseline;
-  box-sizing: border-box;
-}
-
-article,
-aside,
-details,
-figcaption,
-figure,
-footer,
-header,
-hgroup,
-menu,
-nav,
-section {
-  display: block;
 }
 body {
   line-height: 1;
@@ -129,19 +33,9 @@ q:after {
   content: "";
   content: none;
 }
-table {
-  border-collapse: collapse;
-  border-spacing: 0;
-}
-
-a {
-  text-decoration: none;
-}
-
 html,
 body {
   min-width: 350px;
-
   height: 100%;
   min-height: 660px;
   margin: auto;
@@ -153,15 +47,19 @@ body {
   width: 100%;
   height: 100%;
   min-width: 280px;
-
   min-height: auto;
   margin: auto;
   padding: auto;
 }
-button {
-  cursor: pointer;
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
 }
 
+a {
+  text-decoration: none;
+  color: black;
+}
 p {
   font-size: 14px;
 }
@@ -169,7 +67,6 @@ input {
   /*ios대응*/
   appearance: none;
   -webkit-appearance: none;
-  -webkit-border-radius: 0;
 }
 select {
   /*ios대응*/
@@ -184,12 +81,19 @@ select::-ms-expand {
 }
 
 button {
+  cursor: pointer;
   color: black;
+  border: none;
 }
 
 input,
 select,
 textarea {
+  border: none;
   outline: none;
   padding: 0.5rem;
 }
+
+`;
+
+export default GlobalStyles;

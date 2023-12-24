@@ -4,4 +4,4 @@
 
 ## 사용된 기술 
 
-React, context, firebase, react-router-dom
+React, context, firebase, react-router-dom, styled-components
