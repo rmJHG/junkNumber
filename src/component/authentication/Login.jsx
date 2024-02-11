@@ -10,15 +10,14 @@ const Login = () => {
   const nav = useNavigate();
   const [ErrorMsg, setErrorMsg] = useState();
 
-  const loginSubmit = async (event) => {
+  const loginSubmit = (event) => {
     event.preventDefault();
 
-    await signInWithEmailAndPassword(firebaseAuth, enterEmail.current.value, enterPassword.current.value)
+    signInWithEmailAndPassword(firebaseAuth, enterEmail.current.value, enterPassword.current.value)
       .then((userCredential) => {
         nav("/");
       })
       .catch((error) => {
-        console.log(error.code);
         switch (error.code) {
           case "auth/wrong-password":
             setErrorMsg("비밀번호가 틀립니다.");
@@ -29,7 +28,6 @@ const Login = () => {
             break;
 
           default:
-            console.log(error.code);
         }
       });
   };
@@ -45,7 +43,7 @@ const Login = () => {
           <InputContainer>
             <div>
               <label htmlFor="email">email :</label>
-              <input type="email" ref={enterEmail} />
+              <input type="email" ref={enterEmail} required />
             </div>
 
             <div>

@@ -12,6 +12,7 @@ const WritePost = () => {
   const context = useContext(DataContext);
   const [content, setContent] = useState(false);
   const [userDisplayName, setUserDisplayName] = useState();
+  const [userUid, setUserUid ] = useState(null)
   const titleRef = useRef();
   const contentRef = useRef();
 
@@ -27,6 +28,7 @@ const WritePost = () => {
       title: titleRef.current.value,
       postDate: date,
       postMS: today.getTime(),
+      Uid : userUid
     }).then(() => {
       nav(-1);
       context.refreshFn();
@@ -37,6 +39,7 @@ const WritePost = () => {
       if (user) {
         setContent(true);
         setUserDisplayName(user.displayName);
+        setUserUid(user.uid)
       } else {
         setContent(false);
       }

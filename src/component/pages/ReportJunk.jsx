@@ -14,8 +14,8 @@ const ReportJunk = () => {
   const [content, setContent] = useState(false);
   const [checkNum, setCheckNum] = useState(true);
   const [textCount, setTextCount] = useState(0);
-  const userNameRef = useRef(null);
-  const userUid = useRef(null);
+  const [userDisplayName, setUserDisplayName] = useState();
+  const [userUid, setUserUid ] = useState(null)
   const enterFirstNumRef = useRef();
   const enterLastNumRef = useRef();
   const enterJunkComent = useRef();
@@ -43,11 +43,12 @@ const ReportJunk = () => {
     } else {
       await push(dbRef, {
         number: `${enteredFirstNum}-${enteredLastNum}`,
-        postName: userNameRef.current,
+        postName: userDisplayName,
         postDate: date,
         postMS: today.getTime(),
         type: enteredDetail,
         coment: enterJunkComent.current.value,
+        Uid : userUid,
       }).then(() => {
         context.refreshFn();
         nav("/");
@@ -61,8 +62,8 @@ const ReportJunk = () => {
   useEffect(() => {
     const fetchData = onAuthStateChanged(firebaseAuth, (user) => {
       if (user) {
-        userNameRef.current = user.displayName;
-        userUid.current = user.uid;
+        setUserDisplayName(user.displayName)
+        setUserUid(user.uid)
         setContent(true);
       } else {
         setContent(false);

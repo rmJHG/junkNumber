@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { firebaseAuth, userNameDbRef } from "../../firebase";
-import { createUserWithEmailAndPassword, updateProfile, signOut, onAuthStateChanged } from "firebase/auth";
+import { createUserWithEmailAndPassword, updateProfile, signOut, onAuthStateChanged, sendEmailVerification } from "firebase/auth";
 import { child, get, push } from "firebase/database";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
@@ -47,6 +47,8 @@ const SignIn = (props) => {
     createUserWithEmailAndPassword(firebaseAuth, enterUserEmail.current.value, enterUserPassword.current.value)
       .then(() => {
         nav("/sucess");
+      }).then(()=>{
+        sendEmailVerification(firebaseAuth.currentUser)
       })
       .then((result) => {
         updateProfile(firebaseAuth.currentUser, {
@@ -84,7 +86,7 @@ const SignIn = (props) => {
         <InputContainer>
           <div>
             <label htmlFor="userEmail">EMAIL</label>
-            <input type="email" id="userEmail" ref={enterUserEmail} />
+            <input type="email" id="userEmail" ref={enterUserEmail} required />
 
             <AlertContainer>
               <p></p> {emailError && <p>사용할 수 없는 이메일입니다.</p>}
@@ -92,7 +94,7 @@ const SignIn = (props) => {
           </div>
           <div>
             <label htmlFor="password">PASSWORD</label>
-            <input type="password" id="password" ref={enterUserPassword} />
+            <input type="password" id="password" ref={enterUserPassword} required />
             <AlertContainer>
               <p>최소 6자이상만 가능합니다. </p> {passwordError && <p>올바르지 않은 비밀번호 형식입니다.</p>}
             </AlertContainer>
@@ -100,7 +102,7 @@ const SignIn = (props) => {
 
           <div>
             <label htmlFor="userName">USER NAME</label>
-            <input type="text" ref={enterNickName} id="userName" onChange={checkNickName} minLength={3} maxLength={8} />
+            <input type="text" ref={enterNickName} id="userName" onChange={checkNickName} minLength={3} maxLength={8} required />
             <AlertContainer>
               <p>3~8글자만 가능합니다.</p>
               {signInError && <p>사용할 수 없는 닉네임입니다.</p>}

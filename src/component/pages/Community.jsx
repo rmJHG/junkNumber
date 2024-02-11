@@ -88,7 +88,11 @@ const Community = () => {
       </Container>
     );
   } else {
-    return <Loading />;
+    return (
+      <>
+        <Loading />
+      </>
+    );
   }
 };
 

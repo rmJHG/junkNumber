@@ -4,6 +4,8 @@ import TopReportedJunkList from "../junk/TopReportedJunkList";
 import DataContext from "../context/DataContext";
 import SearchBar from "../search/SearchBar";
 import styled from "styled-components";
+import { onAuthStateChanged, signOut } from "firebase/auth";
+import { firebaseAuth } from "../../firebase";
 
 const MainPage = () => {
   const [junk, setJunk] = useState([]);
@@ -11,6 +13,9 @@ const MainPage = () => {
   const context = useContext(DataContext);
 
   useEffect(() => {
+    onAuthStateChanged(firebaseAuth, (user) => {
+      user && user.emailVerified === false && signOut(firebaseAuth);
+    });
     if (context.junkData !== undefined) {
       setJunk(context.junkData);
     }
